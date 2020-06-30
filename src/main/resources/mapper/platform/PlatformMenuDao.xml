@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="app.dao.platform.PlatformMenuDao">
+
+    <resultMap type="app.entity.PlatformMenu" id="PlatformMenuMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="parentId" column="parent_id" jdbcType="INTEGER"/>
+        <result property="pri" column="pri" jdbcType="INTEGER"/>
+        <result property="menuName" column="menu_name" jdbcType="VARCHAR"/>
+        <result property="path" column="path" jdbcType="VARCHAR"/>
+        <result property="permissionValue" column="permission_value" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="TINYINT"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="icon" column="icon" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <select id="getAllMenu" resultMap="PlatformMenuMap">
+        select * from iquanwai_test.platform_menu where parent_id = ${parentId}
+    </select>
+<!--    &lt;!&ndash;查询单个&ndash;&gt;-->
+<!--    <select id="queryById" resultMap="PlatformMenuMap">-->
+<!--        select-->
+<!--          id, parent_id, pri, menu_name, path, permission_value, status, create_time, update_time-->
+<!--        from iquanwai_test.platform_menu-->
+<!--        where id = #{id}-->
+<!--    </select>-->
+
+<!--    &lt;!&ndash;查询指定行数据&ndash;&gt;-->
+<!--    <select id="queryAllByLimit" resultMap="PlatformMenuMap">-->
+<!--        select-->
+<!--          id, parent_id, pri, menu_name, path, permission_value, status, create_time, update_time-->
+<!--        from iquanwai_test.platform_menu-->
+<!--        limit #{offset}, #{limit}-->
+<!--    </select>-->
+
+<!--    &lt;!&ndash;通过实体作为筛选条件查询&ndash;&gt;-->
+<!--    <select id="queryAll" resultMap="PlatformMenuMap">-->
+<!--        select-->
+<!--          id, parent_id, pri, menu_name, path, permission_value, status, create_time, update_time-->
+<!--        from iquanwai_test.platform_menu-->
+<!--        <where>-->
+<!--            <if test="id != null">-->
+<!--                and id = #{id}-->
+<!--            </if>-->
+<!--            <if test="parentId != null">-->
+<!--                and parent_id = #{parentId}-->
+<!--            </if>-->
+<!--            <if test="pri != null">-->
+<!--                and pri = #{pri}-->
+<!--            </if>-->
+<!--            <if test="menuName != null and menuName != ''">-->
+<!--                and menu_name = #{menuName}-->
+<!--            </if>-->
+<!--            <if test="path != null and path != ''">-->
+<!--                and path = #{path}-->
+<!--            </if>-->
+<!--            <if test="permissionValue != null and permissionValue != ''">-->
+<!--                and permission_value = #{permissionValue}-->
+<!--            </if>-->
+<!--            <if test="status != null">-->
+<!--                and status = #{status}-->
+<!--            </if>-->
+<!--            <if test="createTime != null">-->
+<!--                and create_time = #{createTime}-->
+<!--            </if>-->
+<!--            <if test="updateTime != null">-->
+<!--                and update_time = #{updateTime}-->
+<!--            </if>-->
+<!--        </where>-->
+<!--    </select>-->
+
+<!--    &lt;!&ndash;新增所有列&ndash;&gt;-->
+<!--    <insert id="insert" keyProperty="id" useGeneratedKeys="true">-->
+<!--        insert into iquanwai_test.platform_menu(parent_id, pri, menu_name, path, permission_value, status, create_time, update_time)-->
+<!--        values (#{parentId}, #{pri}, #{menuName}, #{path}, #{permissionValue}, #{status}, #{createTime}, #{updateTime})-->
+<!--    </insert>-->
+
+<!--    &lt;!&ndash;通过主键修改数据&ndash;&gt;-->
+<!--    <update id="update">-->
+<!--        update iquanwai_test.platform_menu-->
+<!--        <set>-->
+<!--            <if test="parentId != null">-->
+<!--                parent_id = #{parentId},-->
+<!--            </if>-->
+<!--            <if test="pri != null">-->
+<!--                pri = #{pri},-->
+<!--            </if>-->
+<!--            <if test="menuName != null and menuName != ''">-->
+<!--                menu_name = #{menuName},-->
+<!--            </if>-->
+<!--            <if test="path != null and path != ''">-->
+<!--                path = #{path},-->
+<!--            </if>-->
+<!--            <if test="permissionValue != null and permissionValue != ''">-->
+<!--                permission_value = #{permissionValue},-->
+<!--            </if>-->
+<!--            <if test="status != null">-->
+<!--                status = #{status},-->
+<!--            </if>-->
+<!--            <if test="createTime != null">-->
+<!--                create_time = #{createTime},-->
+<!--            </if>-->
+<!--            <if test="updateTime != null">-->
+<!--                update_time = #{updateTime},-->
+<!--            </if>-->
+<!--        </set>-->
+<!--        where id = #{id}-->
+<!--    </update>-->
+
+<!--    &lt;!&ndash;通过主键删除&ndash;&gt;-->
+<!--    <delete id="deleteById">-->
+<!--        delete from iquanwai_test.platform_menu where id = #{id}-->
+<!--    </delete>-->
+
+
+
+</mapper>

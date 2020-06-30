@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="app.dao.test.TermScheduleDao">
+
+    <resultMap type="app.entity.TermSchedule" id="TermScheduleMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="code" column="code" jdbcType="VARCHAR"/>
+        <result property="lessonPackageName" column="lesson_package_name" jdbcType="VARCHAR"/>
+        <result property="lessonPackageId" column="lesson_package_id" jdbcType="INTEGER"/>
+        <result property="lessonPackageCode" column="lesson_package_code" jdbcType="VARCHAR"/>
+        <result property="term" column="term" jdbcType="INTEGER"/>
+        <result property="applyStartTime" column="apply_start_time" jdbcType="TIMESTAMP"/>
+        <result property="applyEndTime" column="apply_end_time" jdbcType="TIMESTAMP"/>
+        <result property="lessonPackageActiveTime" column="lesson_package_active_time" jdbcType="TIMESTAMP"/>
+        <result property="lessonPackageExpiredTime" column="lesson_package_expired_time" jdbcType="TIMESTAMP"/>
+        <result property="termState" column="term_state" jdbcType="INTEGER"/>
+        <result property="classLimit" column="class_limit" jdbcType="INTEGER"/>
+        <result property="termLimit" column="term_limit" jdbcType="INTEGER"/>
+        <result property="sellingYear" column="selling_year" jdbcType="INTEGER"/>
+        <result property="sellingMonth" column="selling_month" jdbcType="INTEGER"/>
+        <result property="collegeType" column="college_type" jdbcType="INTEGER"/>
+        <result property="studyCycle" column="study_cycle" jdbcType="INTEGER"/>
+        <result property="lessonPackageTypeId" column="lesson_package_type_id" jdbcType="INTEGER"/>
+        <result property="preApplyMaximum" column="pre_apply_maximum" jdbcType="INTEGER"/>
+        <result property="actualApplyStartTime" column="actual_apply_start_time" jdbcType="TIMESTAMP"/>
+        <result property="actualApplyEndTime" column="actual_apply_end_time" jdbcType="TIMESTAMP"/>
+        <result property="forecastName" column="forecast_name" jdbcType="INTEGER"/>
+        <result property="forceNextIssue" column="force_next_issue" jdbcType="INTEGER"/>
+        <result property="classFlag" column="class_flag" jdbcType="INTEGER"/>
+        <result property="givingFlag" column="giving_flag" jdbcType="INTEGER"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="initStatus" column="init_status" jdbcType="BOOLEAN"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="createdBy" column="created_by" jdbcType="VARCHAR"/>
+        <result property="modifiedBy" column="modified_by" jdbcType="VARCHAR"/>
+        <result property="memberTypeId" column="member_type_id" jdbcType="INTEGER"/>
+        <result property="usageState" column="usage_state" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="TermScheduleMap">
+        select
+          id, code, lesson_package_name, lesson_package_id, lesson_package_code, term, apply_start_time, apply_end_time, lesson_package_active_time, lesson_package_expired_time, term_state, class_limit, term_limit, selling_year, selling_month, college_type, study_cycle, lesson_package_type_id, pre_apply_maximum, actual_apply_start_time, actual_apply_end_time, forecast_name, force_next_issue, class_flag, giving_flag, status, init_status, create_time, update_time, created_by, modified_by, member_type_id, usage_state
+        from iquanwai.term_schedule
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="TermScheduleMap">
+        select
+          id, code, lesson_package_name, lesson_package_id, lesson_package_code, term, apply_start_time, apply_end_time, lesson_package_active_time, lesson_package_expired_time, term_state, class_limit, term_limit, selling_year, selling_month, college_type, study_cycle, lesson_package_type_id, pre_apply_maximum, actual_apply_start_time, actual_apply_end_time, forecast_name, force_next_issue, class_flag, giving_flag, status, init_status, create_time, update_time, created_by, modified_by, member_type_id, usage_state
+        from iquanwai.term_schedule
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="TermScheduleMap">
+        select
+          id, code, lesson_package_name, lesson_package_id, lesson_package_code, term, apply_start_time, apply_end_time, lesson_package_active_time, lesson_package_expired_time, term_state, class_limit, term_limit, selling_year, selling_month, college_type, study_cycle, lesson_package_type_id, pre_apply_maximum, actual_apply_start_time, actual_apply_end_time, forecast_name, force_next_issue, class_flag, giving_flag, status, init_status, create_time, update_time, created_by, modified_by, member_type_id, usage_state
+        from iquanwai.term_schedule
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="code != null and code != ''">
+                and code = #{code}
+            </if>
+            <if test="lessonPackageName != null and lessonPackageName != ''">
+                and lesson_package_name = #{lessonPackageName}
+            </if>
+            <if test="lessonPackageId != null">
+                and lesson_package_id = #{lessonPackageId}
+            </if>
+            <if test="lessonPackageCode != null and lessonPackageCode != ''">
+                and lesson_package_code = #{lessonPackageCode}
+            </if>
+            <if test="term != null">
+                and term = #{term}
+            </if>
+            <if test="applyStartTime != null">
+                and apply_start_time = #{applyStartTime}
+            </if>
+            <if test="applyEndTime != null">
+                and apply_end_time = #{applyEndTime}
+            </if>
+            <if test="lessonPackageActiveTime != null">
+                and lesson_package_active_time = #{lessonPackageActiveTime}
+            </if>
+            <if test="lessonPackageExpiredTime != null">
+                and lesson_package_expired_time = #{lessonPackageExpiredTime}
+            </if>
+            <if test="termState != null">
+                and term_state = #{termState}
+            </if>
+            <if test="classLimit != null">
+                and class_limit = #{classLimit}
+            </if>
+            <if test="termLimit != null">
+                and term_limit = #{termLimit}
+            </if>
+            <if test="sellingYear != null">
+                and selling_year = #{sellingYear}
+            </if>
+            <if test="sellingMonth != null">
+                and selling_month = #{sellingMonth}
+            </if>
+            <if test="collegeType != null">
+                and college_type = #{collegeType}
+            </if>
+            <if test="studyCycle != null">
+                and study_cycle = #{studyCycle}
+            </if>
+            <if test="lessonPackageTypeId != null">
+                and lesson_package_type_id = #{lessonPackageTypeId}
+            </if>
+            <if test="preApplyMaximum != null">
+                and pre_apply_maximum = #{preApplyMaximum}
+            </if>
+            <if test="actualApplyStartTime != null">
+                and actual_apply_start_time = #{actualApplyStartTime}
+            </if>
+            <if test="actualApplyEndTime != null">
+                and actual_apply_end_time = #{actualApplyEndTime}
+            </if>
+            <if test="forecastName != null">
+                and forecast_name = #{forecastName}
+            </if>
+            <if test="forceNextIssue != null">
+                and force_next_issue = #{forceNextIssue}
+            </if>
+            <if test="classFlag != null">
+                and class_flag = #{classFlag}
+            </if>
+            <if test="givingFlag != null">
+                and giving_flag = #{givingFlag}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="initStatus != null">
+                and init_status = #{initStatus}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="createdBy != null and createdBy != ''">
+                and created_by = #{createdBy}
+            </if>
+            <if test="modifiedBy != null and modifiedBy != ''">
+                and modified_by = #{modifiedBy}
+            </if>
+            <if test="memberTypeId != null">
+                and member_type_id = #{memberTypeId}
+            </if>
+            <if test="usageState != null">
+                and usage_state = #{usageState}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into iquanwai.term_schedule(code, lesson_package_name, lesson_package_id, lesson_package_code, term, apply_start_time, apply_end_time, lesson_package_active_time, lesson_package_expired_time, term_state, class_limit, term_limit, selling_year, selling_month, college_type, study_cycle, lesson_package_type_id, pre_apply_maximum, actual_apply_start_time, actual_apply_end_time, forecast_name, force_next_issue, class_flag, giving_flag, status, init_status, create_time, update_time, created_by, modified_by, member_type_id, usage_state)
+        values (#{code}, #{lessonPackageName}, #{lessonPackageId}, #{lessonPackageCode}, #{term}, #{applyStartTime}, #{applyEndTime}, #{lessonPackageActiveTime}, #{lessonPackageExpiredTime}, #{termState}, #{classLimit}, #{termLimit}, #{sellingYear}, #{sellingMonth}, #{collegeType}, #{studyCycle}, #{lessonPackageTypeId}, #{preApplyMaximum}, #{actualApplyStartTime}, #{actualApplyEndTime}, #{forecastName}, #{forceNextIssue}, #{classFlag}, #{givingFlag}, #{status}, #{initStatus}, #{createTime}, #{updateTime}, #{createdBy}, #{modifiedBy}, #{memberTypeId}, #{usageState})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update iquanwai.term_schedule
+        <set>
+            <if test="code != null and code != ''">
+                code = #{code},
+            </if>
+            <if test="lessonPackageName != null and lessonPackageName != ''">
+                lesson_package_name = #{lessonPackageName},
+            </if>
+            <if test="lessonPackageId != null">
+                lesson_package_id = #{lessonPackageId},
+            </if>
+            <if test="lessonPackageCode != null and lessonPackageCode != ''">
+                lesson_package_code = #{lessonPackageCode},
+            </if>
+            <if test="term != null">
+                term = #{term},
+            </if>
+            <if test="applyStartTime != null">
+                apply_start_time = #{applyStartTime},
+            </if>
+            <if test="applyEndTime != null">
+                apply_end_time = #{applyEndTime},
+            </if>
+            <if test="lessonPackageActiveTime != null">
+                lesson_package_active_time = #{lessonPackageActiveTime},
+            </if>
+            <if test="lessonPackageExpiredTime != null">
+                lesson_package_expired_time = #{lessonPackageExpiredTime},
+            </if>
+            <if test="termState != null">
+                term_state = #{termState},
+            </if>
+            <if test="classLimit != null">
+                class_limit = #{classLimit},
+            </if>
+            <if test="termLimit != null">
+                term_limit = #{termLimit},
+            </if>
+            <if test="sellingYear != null">
+                selling_year = #{sellingYear},
+            </if>
+            <if test="sellingMonth != null">
+                selling_month = #{sellingMonth},
+            </if>
+            <if test="collegeType != null">
+                college_type = #{collegeType},
+            </if>
+            <if test="studyCycle != null">
+                study_cycle = #{studyCycle},
+            </if>
+            <if test="lessonPackageTypeId != null">
+                lesson_package_type_id = #{lessonPackageTypeId},
+            </if>
+            <if test="preApplyMaximum != null">
+                pre_apply_maximum = #{preApplyMaximum},
+            </if>
+            <if test="actualApplyStartTime != null">
+                actual_apply_start_time = #{actualApplyStartTime},
+            </if>
+            <if test="actualApplyEndTime != null">
+                actual_apply_end_time = #{actualApplyEndTime},
+            </if>
+            <if test="forecastName != null">
+                forecast_name = #{forecastName},
+            </if>
+            <if test="forceNextIssue != null">
+                force_next_issue = #{forceNextIssue},
+            </if>
+            <if test="classFlag != null">
+                class_flag = #{classFlag},
+            </if>
+            <if test="givingFlag != null">
+                giving_flag = #{givingFlag},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="initStatus != null">
+                init_status = #{initStatus},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="createdBy != null and createdBy != ''">
+                created_by = #{createdBy},
+            </if>
+            <if test="modifiedBy != null and modifiedBy != ''">
+                modified_by = #{modifiedBy},
+            </if>
+            <if test="memberTypeId != null">
+                member_type_id = #{memberTypeId},
+            </if>
+            <if test="usageState != null">
+                usage_state = #{usageState},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from iquanwai.term_schedule where id = #{id}
+    </delete>
+
+
+    <select id="getTermScheduleByLessonPackage" resultMap="TermScheduleMap">
+        select * from iquanwai.term_schedule where lesson_package_id=#{lessonPackageId} and status=0 and usage_state=0;
+    </select>
+
+</mapper>

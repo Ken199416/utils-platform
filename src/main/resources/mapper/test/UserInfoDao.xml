@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="app.dao.test.UserInfoDao">
+
+    <resultMap type="app.entity.UserInfo" id="UserInfoMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="passportId" column="passport_id" jdbcType="INTEGER"/>
+        <result property="riseId" column="rise_id" jdbcType="VARCHAR"/>
+        <result property="userType" column="user_type" jdbcType="INTEGER"/>
+        <result property="nickName" column="nick_name" jdbcType="VARCHAR"/>
+        <result property="realName" column="real_name" jdbcType="VARCHAR"/>
+        <result property="memberId" column="member_id" jdbcType="VARCHAR"/>
+        <result property="wechat" column="wechat" jdbcType="VARCHAR"/>
+        <result property="signature" column="signature" jdbcType="VARCHAR"/>
+        <result property="emotionStatus" column="emotion_status" jdbcType="INTEGER"/>
+        <result property="mobile" column="mobile" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+        <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
+        <result property="sex" column="sex" jdbcType="INTEGER"/>
+        <result property="birthday" column="birthday" jdbcType="TIMESTAMP"/>
+        <result property="countryCode" column="country_code" jdbcType="VARCHAR"/>
+        <result property="country" column="country" jdbcType="VARCHAR"/>
+        <result property="provinceCode" column="province_code" jdbcType="VARCHAR"/>
+        <result property="province" column="province" jdbcType="VARCHAR"/>
+        <result property="cityCode" column="city_code" jdbcType="VARCHAR"/>
+        <result property="city" column="city" jdbcType="VARCHAR"/>
+        <result property="education" column="education" jdbcType="INTEGER"/>
+        <result property="jobStatus" column="job_status" jdbcType="INTEGER"/>
+        <result property="college" column="college" jdbcType="VARCHAR"/>
+        <result property="company" column="company" jdbcType="VARCHAR"/>
+        <result property="industry" column="industry" jdbcType="VARCHAR"/>
+        <result property="profession" column="profession" jdbcType="VARCHAR"/>
+        <result property="position" column="position" jdbcType="VARCHAR"/>
+        <result property="positionLevel" column="position_level" jdbcType="INTEGER"/>
+        <result property="workYear" column="work_year" jdbcType="INTEGER"/>
+        <result property="channelCode" column="channel_code" jdbcType="VARCHAR"/>
+        <result property="channelType" column="channel_type" jdbcType="VARCHAR"/>
+        <result property="channelTypeId" column="channel_type_id" jdbcType="INTEGER"/>
+        <result property="channelGroup" column="channel_group" jdbcType="VARCHAR"/>
+        <result property="channelGroupId" column="channel_group_id" jdbcType="INTEGER"/>
+        <result property="channelName" column="channel_name" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="createdBy" column="created_by" jdbcType="VARCHAR"/>
+        <result property="modifiedBy" column="modified_by" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="extensionCode" column="extension_code" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="UserInfoMap">
+        select
+          id, passport_id, rise_id, user_type, nick_name, real_name, member_id, wechat, signature, emotion_status, mobile, email, avatar, sex, birthday, country_code, country, province_code, province, city_code, city, education, job_status, college, company, industry, profession, position, position_level, work_year, channel_code, channel_type, channel_type_id, channel_group, channel_group_id, channel_name, status, created_by, modified_by, create_time, update_time, extension_code
+        from iquanwai.user_info
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="UserInfoMap">
+        select
+          id, passport_id, rise_id, user_type, nick_name, real_name, member_id, wechat, signature, emotion_status, mobile, email, avatar, sex, birthday, country_code, country, province_code, province, city_code, city, education, job_status, college, company, industry, profession, position, position_level, work_year, channel_code, channel_type, channel_type_id, channel_group, channel_group_id, channel_name, status, created_by, modified_by, create_time, update_time, extension_code
+        from iquanwai.user_info
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="UserInfoMap">
+        select
+          id, passport_id, rise_id, user_type, nick_name, real_name, member_id, wechat, signature, emotion_status, mobile, email, avatar, sex, birthday, country_code, country, province_code, province, city_code, city, education, job_status, college, company, industry, profession, position, position_level, work_year, channel_code, channel_type, channel_type_id, channel_group, channel_group_id, channel_name, status, created_by, modified_by, create_time, update_time, extension_code
+        from iquanwai.user_info
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="passportId != null">
+                and passport_id = #{passportId}
+            </if>
+            <if test="riseId != null and riseId != ''">
+                and rise_id = #{riseId}
+            </if>
+            <if test="userType != null">
+                and user_type = #{userType}
+            </if>
+            <if test="nickName != null and nickName != ''">
+                and nick_name = #{nickName}
+            </if>
+            <if test="realName != null and realName != ''">
+                and real_name = #{realName}
+            </if>
+            <if test="memberId != null and memberId != ''">
+                and member_id = #{memberId}
+            </if>
+            <if test="wechat != null and wechat != ''">
+                and wechat = #{wechat}
+            </if>
+            <if test="signature != null and signature != ''">
+                and signature = #{signature}
+            </if>
+            <if test="emotionStatus != null">
+                and emotion_status = #{emotionStatus}
+            </if>
+            <if test="mobile != null and mobile != ''">
+                and mobile = #{mobile}
+            </if>
+            <if test="email != null and email != ''">
+                and email = #{email}
+            </if>
+            <if test="avatar != null and avatar != ''">
+                and avatar = #{avatar}
+            </if>
+            <if test="sex != null">
+                and sex = #{sex}
+            </if>
+            <if test="birthday != null">
+                and birthday = #{birthday}
+            </if>
+            <if test="countryCode != null and countryCode != ''">
+                and country_code = #{countryCode}
+            </if>
+            <if test="country != null and country != ''">
+                and country = #{country}
+            </if>
+            <if test="provinceCode != null and provinceCode != ''">
+                and province_code = #{provinceCode}
+            </if>
+            <if test="province != null and province != ''">
+                and province = #{province}
+            </if>
+            <if test="cityCode != null and cityCode != ''">
+                and city_code = #{cityCode}
+            </if>
+            <if test="city != null and city != ''">
+                and city = #{city}
+            </if>
+            <if test="education != null">
+                and education = #{education}
+            </if>
+            <if test="jobStatus != null">
+                and job_status = #{jobStatus}
+            </if>
+            <if test="college != null and college != ''">
+                and college = #{college}
+            </if>
+            <if test="company != null and company != ''">
+                and company = #{company}
+            </if>
+            <if test="industry != null and industry != ''">
+                and industry = #{industry}
+            </if>
+            <if test="profession != null and profession != ''">
+                and profession = #{profession}
+            </if>
+            <if test="position != null and position != ''">
+                and position = #{position}
+            </if>
+            <if test="positionLevel != null">
+                and position_level = #{positionLevel}
+            </if>
+            <if test="workYear != null">
+                and work_year = #{workYear}
+            </if>
+            <if test="channelCode != null and channelCode != ''">
+                and channel_code = #{channelCode}
+            </if>
+            <if test="channelType != null and channelType != ''">
+                and channel_type = #{channelType}
+            </if>
+            <if test="channelTypeId != null">
+                and channel_type_id = #{channelTypeId}
+            </if>
+            <if test="channelGroup != null and channelGroup != ''">
+                and channel_group = #{channelGroup}
+            </if>
+            <if test="channelGroupId != null">
+                and channel_group_id = #{channelGroupId}
+            </if>
+            <if test="channelName != null and channelName != ''">
+                and channel_name = #{channelName}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="createdBy != null and createdBy != ''">
+                and created_by = #{createdBy}
+            </if>
+            <if test="modifiedBy != null and modifiedBy != ''">
+                and modified_by = #{modifiedBy}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="extensionCode != null and extensionCode != ''">
+                and extension_code = #{extensionCode}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into iquanwai.user_info(passport_id, rise_id, user_type, nick_name, real_name, member_id, wechat, signature, emotion_status, mobile, email, avatar, sex, birthday, country_code, country, province_code, province, city_code, city, education, job_status, college, company, industry, profession, position, position_level, work_year, channel_code, channel_type, channel_type_id, channel_group, channel_group_id, channel_name, status, created_by, modified_by, create_time, update_time, extension_code)
+        values (#{passportId}, #{riseId}, #{userType}, #{nickName}, #{realName}, #{memberId}, #{wechat}, #{signature}, #{emotionStatus}, #{mobile}, #{email}, #{avatar}, #{sex}, #{birthday}, #{countryCode}, #{country}, #{provinceCode}, #{province}, #{cityCode}, #{city}, #{education}, #{jobStatus}, #{college}, #{company}, #{industry}, #{profession}, #{position}, #{positionLevel}, #{workYear}, #{channelCode}, #{channelType}, #{channelTypeId}, #{channelGroup}, #{channelGroupId}, #{channelName}, #{status}, #{createdBy}, #{modifiedBy}, #{createTime}, #{updateTime}, #{extensionCode})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update iquanwai.user_info
+        <set>
+            <if test="passportId != null">
+                passport_id = #{passportId},
+            </if>
+            <if test="riseId != null and riseId != ''">
+                rise_id = #{riseId},
+            </if>
+            <if test="userType != null">
+                user_type = #{userType},
+            </if>
+            <if test="nickName != null and nickName != ''">
+                nick_name = #{nickName},
+            </if>
+            <if test="realName != null and realName != ''">
+                real_name = #{realName},
+            </if>
+            <if test="memberId != null and memberId != ''">
+                member_id = #{memberId},
+            </if>
+            <if test="wechat != null and wechat != ''">
+                wechat = #{wechat},
+            </if>
+            <if test="signature != null and signature != ''">
+                signature = #{signature},
+            </if>
+            <if test="emotionStatus != null">
+                emotion_status = #{emotionStatus},
+            </if>
+            <if test="mobile != null and mobile != ''">
+                mobile = #{mobile},
+            </if>
+            <if test="email != null and email != ''">
+                email = #{email},
+            </if>
+            <if test="avatar != null and avatar != ''">
+                avatar = #{avatar},
+            </if>
+            <if test="sex != null">
+                sex = #{sex},
+            </if>
+            <if test="birthday != null">
+                birthday = #{birthday},
+            </if>
+            <if test="countryCode != null and countryCode != ''">
+                country_code = #{countryCode},
+            </if>
+            <if test="country != null and country != ''">
+                country = #{country},
+            </if>
+            <if test="provinceCode != null and provinceCode != ''">
+                province_code = #{provinceCode},
+            </if>
+            <if test="province != null and province != ''">
+                province = #{province},
+            </if>
+            <if test="cityCode != null and cityCode != ''">
+                city_code = #{cityCode},
+            </if>
+            <if test="city != null and city != ''">
+                city = #{city},
+            </if>
+            <if test="education != null">
+                education = #{education},
+            </if>
+            <if test="jobStatus != null">
+                job_status = #{jobStatus},
+            </if>
+            <if test="college != null and college != ''">
+                college = #{college},
+            </if>
+            <if test="company != null and company != ''">
+                company = #{company},
+            </if>
+            <if test="industry != null and industry != ''">
+                industry = #{industry},
+            </if>
+            <if test="profession != null and profession != ''">
+                profession = #{profession},
+            </if>
+            <if test="position != null and position != ''">
+                position = #{position},
+            </if>
+            <if test="positionLevel != null">
+                position_level = #{positionLevel},
+            </if>
+            <if test="workYear != null">
+                work_year = #{workYear},
+            </if>
+            <if test="channelCode != null and channelCode != ''">
+                channel_code = #{channelCode},
+            </if>
+            <if test="channelType != null and channelType != ''">
+                channel_type = #{channelType},
+            </if>
+            <if test="channelTypeId != null">
+                channel_type_id = #{channelTypeId},
+            </if>
+            <if test="channelGroup != null and channelGroup != ''">
+                channel_group = #{channelGroup},
+            </if>
+            <if test="channelGroupId != null">
+                channel_group_id = #{channelGroupId},
+            </if>
+            <if test="channelName != null and channelName != ''">
+                channel_name = #{channelName},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="createdBy != null and createdBy != ''">
+                created_by = #{createdBy},
+            </if>
+            <if test="modifiedBy != null and modifiedBy != ''">
+                modified_by = #{modifiedBy},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="extensionCode != null and extensionCode != ''">
+                extension_code = #{extensionCode},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from iquanwai.user_info where id = #{id}
+    </delete>
+
+
+    <select id="getUserByPassportId" resultMap="UserInfoMap">
+        select * from iquanwai.user_info where passport_id = #{passportId}
+    </select>
+</mapper>
