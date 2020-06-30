@@ -7,31 +7,26 @@ spring:
   datasource:
     test:
       driver-class-name: com.mysql.jdbc.Driver
-      username: HfL5a9B1
+      username:
       password:
       type: com.alibaba.druid.pool.DruidDataSource
       url: jdbc:mysql://101.132.186.98:9696?autoReconnect=true&useSSL=false&allowMultiQueries=true
     pro:
       driver-class-name: com.mysql.jdbc.Driver
-      username: aeLDGnyZ
+      username:
       password:
       type: com.alibaba.druid.pool.DruidDataSource
       url: jdbc:mysql://101.132.186.98:9696?autoReconnect=true&useSSL=false
     platform:
       driver-class-name: com.mysql.jdbc.Driver
       username: root
-      password: 199416
+      password:
       type: com.alibaba.druid.pool.DruidDataSource
-      url: jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false
+      url: jdbc:mysql://www.94hmj.com:3306?autoReconnect=true&useSSL=false
 
-  resources:
-    static-locations: classpath:static/**
 mybatis:
   type-aliases-package: app.entity
   mapper-locations: classpath:mapper/**/*.xml
 
 
-#logging:
-#  level:
-#    app:
-#      dao: debug
+
