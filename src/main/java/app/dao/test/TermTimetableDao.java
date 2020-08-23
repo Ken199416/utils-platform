@@ -67,4 +67,7 @@ public interface TermTimetableDao {
      */
     int deleteById(Integer id);
 
+    List<TermTimetable> getTermTimeTablesBySchedule(String scheduleCode);
+
+
 }

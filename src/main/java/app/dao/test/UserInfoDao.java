@@ -72,4 +72,6 @@ public interface UserInfoDao {
 
     UserInfo getUserByPassportId(Integer passportId);
 
+    UserInfo getUserByRiseId(String riseId);
+
 }

@@ -17,6 +17,10 @@
 
 
     <select id="getAllMenu" resultMap="PlatformMenuMap">
+        select * from iquanwai_test.platform_menu where parent_id = ${parentId} and isAdmin = 0
+    </select>
+
+    <select id="getAllMenuAdmin" resultMap="PlatformMenuMap">
         select * from iquanwai_test.platform_menu where parent_id = ${parentId}
     </select>
 <!--    &lt;!&ndash;查询单个&ndash;&gt;-->

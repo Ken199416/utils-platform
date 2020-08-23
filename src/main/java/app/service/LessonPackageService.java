@@ -2,6 +2,7 @@ package app.service;
 
 import app.entity.LessonPackage;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 课程集合(LessonPackage)表服务接口
@@ -51,5 +52,14 @@ public interface LessonPackageService {
      * @return 是否成功
      */
     boolean deleteById(Integer id);
+
+
+    LessonPackage getProLessonById(Integer id);
+
+
+    List<Map<String,Object>> getProPackageAcquireRules(String lessonPackageCode,String acquireLessonPackageCodes);
+
+
+    List<LessonPackage> getProAllLessonPackage();
 
 }

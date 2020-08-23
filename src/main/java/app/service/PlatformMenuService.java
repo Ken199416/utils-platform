@@ -57,5 +57,6 @@ public interface PlatformMenuService {
      * 查询所有菜单
      */
     List<PlatformMenu> getAllMenu();
+    List<PlatformMenu> getAllMenuAdmin();
 
 }

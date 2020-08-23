@@ -344,4 +344,8 @@
     <select id="getUserByPassportId" resultMap="UserInfoMap">
         select * from iquanwai.user_info where passport_id = #{passportId}
     </select>
+
+    <select id="getUserByRiseId" resultMap="UserInfoMap">
+        select * from iquanwai.user_info where rise_id = #{riseId}
+    </select>
 </mapper>

@@ -55,4 +55,7 @@ public interface UserInfoService {
 
     UserInfo getUserByPassportId(Integer passportId);
 
+
+    UserInfo getProUserInfoByRiseId(String riseId);
+
 }

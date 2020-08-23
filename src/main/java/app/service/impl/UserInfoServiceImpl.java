@@ -1,5 +1,6 @@
 package app.service.impl;
 
+import app.dao.pro.ProUserInfoDao;
 import app.entity.UserInfo;
 import app.dao.test.UserInfoDao;
 import app.service.UserInfoService;
@@ -18,6 +19,9 @@ import java.util.List;
 public class UserInfoServiceImpl implements UserInfoService {
     @Resource
     private UserInfoDao userInfoDao;
+
+    @Resource
+    private ProUserInfoDao proUserInfoDao;
 
     /**
      * 通过ID查询单条数据
@@ -52,6 +56,12 @@ public class UserInfoServiceImpl implements UserInfoService {
     public UserInfo insert(UserInfo userInfo) {
         this.userInfoDao.insert(userInfo);
         return userInfo;
+    }
+
+    @Override
+    public UserInfo getProUserInfoByRiseId(String riseId) {
+
+        return proUserInfoDao.getUserByRiseId(riseId);
     }
 
     /**

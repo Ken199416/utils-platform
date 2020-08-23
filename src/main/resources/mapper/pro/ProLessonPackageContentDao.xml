@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="app.dao.pro.ProLessonPackageContentDao">
+
+    <resultMap type="app.entity.LessonPackageContent" id="LessonPackageContentMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="lessonPackageId" column="lesson_package_id" jdbcType="INTEGER"/>
+        <result property="lessonPackageCode" column="lesson_package_code" jdbcType="VARCHAR"/>
+        <result property="lessonId" column="lesson_id" jdbcType="INTEGER"/>
+        <result property="lessonCode" column="lesson_code" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="type" column="type" jdbcType="INTEGER"/>
+        <result property="lessonType" column="lesson_type" jdbcType="INTEGER"/>
+        <result property="lessonTypeName" column="lesson_type_name" jdbcType="VARCHAR"/>
+        <result property="parentId" column="parent_id" jdbcType="INTEGER"/>
+        <result property="sequence" column="sequence" jdbcType="INTEGER"/>
+        <result property="finishRuleId" column="finish_rule_id" jdbcType="INTEGER"/>
+        <result property="finishRuleCode" column="finish_rule_code" jdbcType="VARCHAR"/>
+        <result property="finishRuleName" column="finish_rule_name" jdbcType="VARCHAR"/>
+        <result property="startRuleId" column="start_rule_id" jdbcType="INTEGER"/>
+        <result property="startRuleCode" column="start_rule_code" jdbcType="VARCHAR"/>
+        <result property="startRuleCron" column="start_rule_cron" jdbcType="VARCHAR"/>
+        <result property="startRuleDesc" column="start_rule_desc" jdbcType="VARCHAR"/>
+        <result property="expireType" column="expire_type" jdbcType="INTEGER"/>
+        <result property="expire" column="expire" jdbcType="INTEGER"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="createdBy" column="created_by" jdbcType="VARCHAR"/>
+        <result property="modifiedBy" column="modified_by" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="LessonPackageContentMap">
+        select
+          id, lesson_package_id, lesson_package_code, lesson_id, lesson_code, name, type, lesson_type, lesson_type_name, parent_id, sequence, finish_rule_id, finish_rule_code, finish_rule_name, start_rule_id, start_rule_code, start_rule_cron, start_rule_desc, expire_type, expire, status, created_by, modified_by, create_time, update_time
+        from iquanwai.lesson_package_content
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="LessonPackageContentMap">
+        select
+          id, lesson_package_id, lesson_package_code, lesson_id, lesson_code, name, type, lesson_type, lesson_type_name, parent_id, sequence, finish_rule_id, finish_rule_code, finish_rule_name, start_rule_id, start_rule_code, start_rule_cron, start_rule_desc, expire_type, expire, status, created_by, modified_by, create_time, update_time
+        from iquanwai.lesson_package_content
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="LessonPackageContentMap">
+        select
+          id, lesson_package_id, lesson_package_code, lesson_id, lesson_code, name, type, lesson_type, lesson_type_name, parent_id, sequence, finish_rule_id, finish_rule_code, finish_rule_name, start_rule_id, start_rule_code, start_rule_cron, start_rule_desc, expire_type, expire, status, created_by, modified_by, create_time, update_time
+        from iquanwai.lesson_package_content
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="lessonPackageId != null">
+                and lesson_package_id = #{lessonPackageId}
+            </if>
+            <if test="lessonPackageCode != null and lessonPackageCode != ''">
+                and lesson_package_code = #{lessonPackageCode}
+            </if>
+            <if test="lessonId != null">
+                and lesson_id = #{lessonId}
+            </if>
+            <if test="lessonCode != null and lessonCode != ''">
+                and lesson_code = #{lessonCode}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="type != null">
+                and type = #{type}
+            </if>
+            <if test="lessonType != null">
+                and lesson_type = #{lessonType}
+            </if>
+            <if test="lessonTypeName != null and lessonTypeName != ''">
+                and lesson_type_name = #{lessonTypeName}
+            </if>
+            <if test="parentId != null">
+                and parent_id = #{parentId}
+            </if>
+            <if test="sequence != null">
+                and sequence = #{sequence}
+            </if>
+            <if test="finishRuleId != null">
+                and finish_rule_id = #{finishRuleId}
+            </if>
+            <if test="finishRuleCode != null and finishRuleCode != ''">
+                and finish_rule_code = #{finishRuleCode}
+            </if>
+            <if test="finishRuleName != null and finishRuleName != ''">
+                and finish_rule_name = #{finishRuleName}
+            </if>
+            <if test="startRuleId != null">
+                and start_rule_id = #{startRuleId}
+            </if>
+            <if test="startRuleCode != null and startRuleCode != ''">
+                and start_rule_code = #{startRuleCode}
+            </if>
+            <if test="startRuleCron != null and startRuleCron != ''">
+                and start_rule_cron = #{startRuleCron}
+            </if>
+            <if test="startRuleDesc != null and startRuleDesc != ''">
+                and start_rule_desc = #{startRuleDesc}
+            </if>
+            <if test="expireType != null">
+                and expire_type = #{expireType}
+            </if>
+            <if test="expire != null">
+                and expire = #{expire}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="createdBy != null and createdBy != ''">
+                and created_by = #{createdBy}
+            </if>
+            <if test="modifiedBy != null and modifiedBy != ''">
+                and modified_by = #{modifiedBy}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into iquanwai.lesson_package_content(lesson_package_id, lesson_package_code, lesson_id, lesson_code, name, type, lesson_type, lesson_type_name, parent_id, sequence, finish_rule_id, finish_rule_code, finish_rule_name, start_rule_id, start_rule_code, start_rule_cron, start_rule_desc, expire_type, expire, status, created_by, modified_by, create_time, update_time)
+        values (#{lessonPackageId}, #{lessonPackageCode}, #{lessonId}, #{lessonCode}, #{name}, #{type}, #{lessonType}, #{lessonTypeName}, #{parentId}, #{sequence}, #{finishRuleId}, #{finishRuleCode}, #{finishRuleName}, #{startRuleId}, #{startRuleCode}, #{startRuleCron}, #{startRuleDesc}, #{expireType}, #{expire}, #{status}, #{createdBy}, #{modifiedBy}, #{createTime}, #{updateTime})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update iquanwai.lesson_package_content
+        <set>
+            <if test="lessonPackageId != null">
+                lesson_package_id = #{lessonPackageId},
+            </if>
+            <if test="lessonPackageCode != null and lessonPackageCode != ''">
+                lesson_package_code = #{lessonPackageCode},
+            </if>
+            <if test="lessonId != null">
+                lesson_id = #{lessonId},
+            </if>
+            <if test="lessonCode != null and lessonCode != ''">
+                lesson_code = #{lessonCode},
+            </if>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="type != null">
+                type = #{type},
+            </if>
+            <if test="lessonType != null">
+                lesson_type = #{lessonType},
+            </if>
+            <if test="lessonTypeName != null and lessonTypeName != ''">
+                lesson_type_name = #{lessonTypeName},
+            </if>
+            <if test="parentId != null">
+                parent_id = #{parentId},
+            </if>
+            <if test="sequence != null">
+                sequence = #{sequence},
+            </if>
+            <if test="finishRuleId != null">
+                finish_rule_id = #{finishRuleId},
+            </if>
+            <if test="finishRuleCode != null and finishRuleCode != ''">
+                finish_rule_code = #{finishRuleCode},
+            </if>
+            <if test="finishRuleName != null and finishRuleName != ''">
+                finish_rule_name = #{finishRuleName},
+            </if>
+            <if test="startRuleId != null">
+                start_rule_id = #{startRuleId},
+            </if>
+            <if test="startRuleCode != null and startRuleCode != ''">
+                start_rule_code = #{startRuleCode},
+            </if>
+            <if test="startRuleCron != null and startRuleCron != ''">
+                start_rule_cron = #{startRuleCron},
+            </if>
+            <if test="startRuleDesc != null and startRuleDesc != ''">
+                start_rule_desc = #{startRuleDesc},
+            </if>
+            <if test="expireType != null">
+                expire_type = #{expireType},
+            </if>
+            <if test="expire != null">
+                expire = #{expire},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="createdBy != null and createdBy != ''">
+                created_by = #{createdBy},
+            </if>
+            <if test="modifiedBy != null and modifiedBy != ''">
+                modified_by = #{modifiedBy},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from iquanwai.lesson_package_content where id = #{id}
+    </delete>
+
+    <!--  通过课程包id查询其中的课程  -->
+    <select id="getLessonInfoByLessonPackageId" resultMap="LessonPackageContentMap">
+        select * from iquanwai.lesson_package_content where lesson_package_id = #{lessonPackageId} and type = 1 and status = 0;
+    </select>
+
+</mapper>

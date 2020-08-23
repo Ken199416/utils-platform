@@ -221,4 +221,9 @@
         delete from iquanwai.term_timetable where id = #{id}
     </delete>
 
+
+    <select id="getTermTimeTablesBySchedule" resultMap="TermTimetableMap">
+        select * from iquanwai.term_timetable where schedule_code = #{scheduleCode}
+    </select>
+
 </mapper>

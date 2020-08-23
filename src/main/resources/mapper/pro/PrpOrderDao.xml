@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="app.dao.pro.ProOrderDao">
+
+    <resultMap type="app.entity.Order" id="OrderMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="orderId" column="order_id" jdbcType="VARCHAR"/>
+        <result property="orderType" column="order_type" jdbcType="OTHER"/>
+        <result property="platformType" column="platform_type" jdbcType="OTHER"/>
+        <result property="platformSubType" column="platform_sub_type" jdbcType="OTHER"/>
+        <result property="passportId" column="passport_id" jdbcType="INTEGER"/>
+        <result property="riseId" column="rise_id" jdbcType="VARCHAR"/>
+        <result property="orderStatus" column="order_status" jdbcType="OTHER"/>
+        <result property="refundProcess" column="refund_process" jdbcType="OTHER"/>
+        <result property="refundStatus" column="refund_status" jdbcType="OTHER"/>
+        <result property="refundPrice" column="refund_price" jdbcType="INTEGER"/>
+        <result property="orderGoodsPrice" column="order_goods_price" jdbcType="INTEGER"/>
+        <result property="orderDiscount" column="order_discount" jdbcType="INTEGER"/>
+        <result property="orderShouldPrice" column="order_should_price" jdbcType="INTEGER"/>
+        <result property="exchangePrice" column="exchange_price" jdbcType="INTEGER"/>
+        <result property="orderRealPrice" column="order_real_price" jdbcType="INTEGER"/>
+        <result property="channelCode" column="channel_code" jdbcType="VARCHAR"/>
+        <result property="extensionCode" column="extension_code" jdbcType="VARCHAR"/>
+        <result property="channelType" column="channel_type" jdbcType="VARCHAR"/>
+        <result property="channelTypeId" column="channel_type_id" jdbcType="INTEGER"/>
+        <result property="channelGroup" column="channel_group" jdbcType="VARCHAR"/>
+        <result property="channelGroupId" column="channel_group_id" jdbcType="INTEGER"/>
+        <result property="channelName" column="channel_name" jdbcType="VARCHAR"/>
+        <result property="paymentOrderId" column="payment_order_id" jdbcType="VARCHAR"/>
+        <result property="paymentConfigId" column="payment_config_id" jdbcType="INTEGER"/>
+        <result property="paymentCode" column="payment_code" jdbcType="VARCHAR"/>
+        <result property="paymentType" column="payment_type" jdbcType="OTHER"/>
+        <result property="paidTime" column="paid_time" jdbcType="TIMESTAMP"/>
+        <result property="paymentStatus" column="payment_status" jdbcType="OTHER"/>
+        <result property="frontPayReturn" column="front_pay_return" jdbcType="OTHER"/>
+        <result property="nickname" column="nickname" jdbcType="VARCHAR"/>
+        <result property="realName" column="real_name" jdbcType="VARCHAR"/>
+        <result property="mobile" column="mobile" jdbcType="VARCHAR"/>
+        <result property="receiverAddress" column="receiver_address" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="OTHER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="createdBy" column="created_by" jdbcType="VARCHAR"/>
+        <result property="modifiedBy" column="modified_by" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="OrderMap">
+        select
+        *
+        from iquanwai.order
+        where id = #{id}
+    </select>
+
+    <select id="queryByOrderId"  resultMap="OrderMap">
+        select
+        *
+        from iquanwai.order
+        where order_id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="OrderMap">
+        select
+          id, order_id, order_type, platform_type, platform_sub_type, passport_id, rise_id, order_status, refund_process, refund_status, refund_price, order_goods_price, order_discount, order_should_price, exchange_price, order_real_price, channel_code, extension_code, channel_type, channel_type_id, channel_group, channel_group_id, channel_name, payment_order_id, payment_config_id, payment_code, payment_type, paid_time, payment_status, front_pay_return, nickname, real_name, mobile, receiver_address, status, create_time, update_time, created_by, modified_by
+        from iquanwai.order
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="OrderMap">
+        select
+          id, order_id, order_type, platform_type, platform_sub_type, passport_id, rise_id, order_status, refund_process, refund_status, refund_price, order_goods_price, order_discount, order_should_price, exchange_price, order_real_price, channel_code, extension_code, channel_type, channel_type_id, channel_group, channel_group_id, channel_name, payment_order_id, payment_config_id, payment_code, payment_type, paid_time, payment_status, front_pay_return, nickname, real_name, mobile, receiver_address, status, create_time, update_time, created_by, modified_by
+        from iquanwai.order
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="orderId != null and orderId != ''">
+                and order_id = #{orderId}
+            </if>
+            <if test="orderType != null">
+                and order_type = #{orderType}
+            </if>
+            <if test="platformType != null">
+                and platform_type = #{platformType}
+            </if>
+            <if test="platformSubType != null">
+                and platform_sub_type = #{platformSubType}
+            </if>
+            <if test="passportId != null">
+                and passport_id = #{passportId}
+            </if>
+            <if test="riseId != null and riseId != ''">
+                and rise_id = #{riseId}
+            </if>
+            <if test="orderStatus != null">
+                and order_status = #{orderStatus}
+            </if>
+            <if test="refundProcess != null">
+                and refund_process = #{refundProcess}
+            </if>
+            <if test="refundStatus != null">
+                and refund_status = #{refundStatus}
+            </if>
+            <if test="refundPrice != null">
+                and refund_price = #{refundPrice}
+            </if>
+            <if test="orderGoodsPrice != null">
+                and order_goods_price = #{orderGoodsPrice}
+            </if>
+            <if test="orderDiscount != null">
+                and order_discount = #{orderDiscount}
+            </if>
+            <if test="orderShouldPrice != null">
+                and order_should_price = #{orderShouldPrice}
+            </if>
+            <if test="exchangePrice != null">
+                and exchange_price = #{exchangePrice}
+            </if>
+            <if test="orderRealPrice != null">
+                and order_real_price = #{orderRealPrice}
+            </if>
+            <if test="channelCode != null and channelCode != ''">
+                and channel_code = #{channelCode}
+            </if>
+            <if test="extensionCode != null and extensionCode != ''">
+                and extension_code = #{extensionCode}
+            </if>
+            <if test="channelType != null and channelType != ''">
+                and channel_type = #{channelType}
+            </if>
+            <if test="channelTypeId != null">
+                and channel_type_id = #{channelTypeId}
+            </if>
+            <if test="channelGroup != null and channelGroup != ''">
+                and channel_group = #{channelGroup}
+            </if>
+            <if test="channelGroupId != null">
+                and channel_group_id = #{channelGroupId}
+            </if>
+            <if test="channelName != null and channelName != ''">
+                and channel_name = #{channelName}
+            </if>
+            <if test="paymentOrderId != null and paymentOrderId != ''">
+                and payment_order_id = #{paymentOrderId}
+            </if>
+            <if test="paymentConfigId != null">
+                and payment_config_id = #{paymentConfigId}
+            </if>
+            <if test="paymentCode != null and paymentCode != ''">
+                and payment_code = #{paymentCode}
+            </if>
+            <if test="paymentType != null">
+                and payment_type = #{paymentType}
+            </if>
+            <if test="paidTime != null">
+                and paid_time = #{paidTime}
+            </if>
+            <if test="paymentStatus != null">
+                and payment_status = #{paymentStatus}
+            </if>
+            <if test="frontPayReturn != null">
+                and front_pay_return = #{frontPayReturn}
+            </if>
+            <if test="nickname != null and nickname != ''">
+                and nickname = #{nickname}
+            </if>
+            <if test="realName != null and realName != ''">
+                and real_name = #{realName}
+            </if>
+            <if test="mobile != null and mobile != ''">
+                and mobile = #{mobile}
+            </if>
+            <if test="receiverAddress != null and receiverAddress != ''">
+                and receiver_address = #{receiverAddress}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="createdBy != null and createdBy != ''">
+                and created_by = #{createdBy}
+            </if>
+            <if test="modifiedBy != null and modifiedBy != ''">
+                and modified_by = #{modifiedBy}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into iquanwai.order(order_id, order_type, platform_type, platform_sub_type, passport_id, rise_id, order_status, refund_process, refund_status, refund_price, order_goods_price, order_discount, order_should_price, exchange_price, order_real_price, channel_code, extension_code, channel_type, channel_type_id, channel_group, channel_group_id, channel_name, payment_order_id, payment_config_id, payment_code, payment_type, paid_time, payment_status, front_pay_return, nickname, real_name, mobile, receiver_address, status, create_time, update_time, created_by, modified_by)
+        values (#{orderId}, #{orderType}, #{platformType}, #{platformSubType}, #{passportId}, #{riseId}, #{orderStatus}, #{refundProcess}, #{refundStatus}, #{refundPrice}, #{orderGoodsPrice}, #{orderDiscount}, #{orderShouldPrice}, #{exchangePrice}, #{orderRealPrice}, #{channelCode}, #{extensionCode}, #{channelType}, #{channelTypeId}, #{channelGroup}, #{channelGroupId}, #{channelName}, #{paymentOrderId}, #{paymentConfigId}, #{paymentCode}, #{paymentType}, #{paidTime}, #{paymentStatus}, #{frontPayReturn}, #{nickname}, #{realName}, #{mobile}, #{receiverAddress}, #{status}, #{createTime}, #{updateTime}, #{createdBy}, #{modifiedBy})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update iquanwai.order
+        <set>
+            <if test="orderId != null and orderId != ''">
+                order_id = #{orderId},
+            </if>
+            <if test="orderType != null">
+                order_type = #{orderType},
+            </if>
+            <if test="platformType != null">
+                platform_type = #{platformType},
+            </if>
+            <if test="platformSubType != null">
+                platform_sub_type = #{platformSubType},
+            </if>
+            <if test="passportId != null">
+                passport_id = #{passportId},
+            </if>
+            <if test="riseId != null and riseId != ''">
+                rise_id = #{riseId},
+            </if>
+            <if test="orderStatus != null">
+                order_status = #{orderStatus},
+            </if>
+            <if test="refundProcess != null">
+                refund_process = #{refundProcess},
+            </if>
+            <if test="refundStatus != null">
+                refund_status = #{refundStatus},
+            </if>
+            <if test="refundPrice != null">
+                refund_price = #{refundPrice},
+            </if>
+            <if test="orderGoodsPrice != null">
+                order_goods_price = #{orderGoodsPrice},
+            </if>
+            <if test="orderDiscount != null">
+                order_discount = #{orderDiscount},
+            </if>
+            <if test="orderShouldPrice != null">
+                order_should_price = #{orderShouldPrice},
+            </if>
+            <if test="exchangePrice != null">
+                exchange_price = #{exchangePrice},
+            </if>
+            <if test="orderRealPrice != null">
+                order_real_price = #{orderRealPrice},
+            </if>
+            <if test="channelCode != null and channelCode != ''">
+                channel_code = #{channelCode},
+            </if>
+            <if test="extensionCode != null and extensionCode != ''">
+                extension_code = #{extensionCode},
+            </if>
+            <if test="channelType != null and channelType != ''">
+                channel_type = #{channelType},
+            </if>
+            <if test="channelTypeId != null">
+                channel_type_id = #{channelTypeId},
+            </if>
+            <if test="channelGroup != null and channelGroup != ''">
+                channel_group = #{channelGroup},
+            </if>
+            <if test="channelGroupId != null">
+                channel_group_id = #{channelGroupId},
+            </if>
+            <if test="channelName != null and channelName != ''">
+                channel_name = #{channelName},
+            </if>
+            <if test="paymentOrderId != null and paymentOrderId != ''">
+                payment_order_id = #{paymentOrderId},
+            </if>
+            <if test="paymentConfigId != null">
+                payment_config_id = #{paymentConfigId},
+            </if>
+            <if test="paymentCode != null and paymentCode != ''">
+                payment_code = #{paymentCode},
+            </if>
+            <if test="paymentType != null">
+                payment_type = #{paymentType},
+            </if>
+            <if test="paidTime != null">
+                paid_time = #{paidTime},
+            </if>
+            <if test="paymentStatus != null">
+                payment_status = #{paymentStatus},
+            </if>
+            <if test="frontPayReturn != null">
+                front_pay_return = #{frontPayReturn},
+            </if>
+            <if test="nickname != null and nickname != ''">
+                nickname = #{nickname},
+            </if>
+            <if test="realName != null and realName != ''">
+                real_name = #{realName},
+            </if>
+            <if test="mobile != null and mobile != ''">
+                mobile = #{mobile},
+            </if>
+            <if test="receiverAddress != null and receiverAddress != ''">
+                receiver_address = #{receiverAddress},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="createdBy != null and createdBy != ''">
+                created_by = #{createdBy},
+            </if>
+            <if test="modifiedBy != null and modifiedBy != ''">
+                modified_by = #{modifiedBy},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from iquanwai.order where id = #{id}
+    </delete>
+
+</mapper>

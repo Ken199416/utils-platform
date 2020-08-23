@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="app.dao.platform.UserDao">
+    <insert id="register" parameterType="app.entity.User">
+        insert into jemterapp.user ( username, password, age, sex, address, accountName) values (#{username},#{password},#{age},#{sex},#{address},#{accountName});
+    </insert>
+
+
+
+
+    <select id="getUserBySearch" resultType="app.entity.User">
+        select * from iquanwai_test.user
+        <if test="params.query!=''">
+            where username like '%${params.query}%'
+        </if>
+        order by id desc
+        LIMIT #{params.start},#{params.size};
+    </select>
+
+
+    <select id="getUserById" resultType="app.entity.User" parameterType="Long">
+        select id,username,customerName from iquanwai_test.user where id = ${id};
+    </select>
+
+
+    <select id="getUserLogin" resultType="app.entity.User" parameterType="app.entity.User">
+        select id,username,password,customerName from iquanwai_test.user where username = #{username} and del = 1 limit 1;
+    </select>
+
+
+
+    <select id="getUserCount" resultType="Long" parameterType="app.entity.User">
+        select count(*) from iquanwai_test.user
+        <if test="params.query!=''">
+            where username like '%${params.query}%'
+        </if>
+    </select>
+
+
+    <insert id="addUser"  >
+        insert into iquanwai_test.user ( username, password, mobile, email,del ,customerName,address,company,department) values
+        (#{username},#{password},#{mobile},#{email},1,#{customerName},#{address},#{company},#{department});
+    </insert>
+    <select id="getUserCountByName" resultType="Long">
+        select count(*) from iquanwai_test.user
+        <if test="params.query!=''">
+            where username like '%${params.query}%'
+        </if>
+    </select>
+
+
+    <update id="toDelUser">
+        update iquanwai_test.user set del = ${params.flag} where id = ${params.uid};
+    </update>
+
+    <update id="editUser" parameterType="app.entity.User">
+        update iquanwai_test.user set mobile = #{mobile} ,email = #{email} ,customerName = #{customerName},
+        address = #{address},company = #{company},department = #{department} where id = ${id};
+    </update>
+
+
+</mapper>

@@ -69,6 +69,19 @@ public class PlatformMenuServiceImpl implements PlatformMenuService {
         return platformMenuList;
     }
 
+    @Override
+    public List<PlatformMenu> getAllMenuAdmin() {
+//        先获取顶级的菜单，再通过顶级的菜单获取下级菜单
+        List<PlatformMenu> platformMenuList = platformMenuDao.getAllMenuAdmin(0);
+        for (PlatformMenu menu : platformMenuList
+        ) {
+            if(menu.getParentId() != null){
+                List<PlatformMenu> childrenMenu = platformMenuDao.getAllMenuAdmin(menu.getId());
+                menu.setChildren(childrenMenu);
+            }
+        }
+        return platformMenuList;    }
+
     /**
      * 修改数据
      *

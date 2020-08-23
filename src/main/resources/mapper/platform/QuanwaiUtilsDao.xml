@@ -25,7 +25,7 @@
     <select id="queryAllByLimit" resultMap="QuanwaiUtilsMap">
         select
           id, utils_name, open_type, path, status, create_time, update_time, utils_describe
-        from iquanwai_test.quanwai_utils
+        from iquanwai_test.quanwai_utils where status = 1
         limit #{offset}, #{limit}
     </select>
 

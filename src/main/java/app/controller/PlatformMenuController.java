@@ -2,10 +2,15 @@ package app.controller;
 
 import app.entity.PlatformMenu;
 import app.entity.ResponseBean;
+import app.entity.User;
 import app.service.PlatformMenuService;
+import app.service.UserService;
+import app.utils.JwtTokenUtils;
+import org.apache.http.HttpResponse;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 平台的菜单(PlatformMenu)表控制层
@@ -21,6 +26,9 @@ public class PlatformMenuController {
     @Resource
     private PlatformMenuService platformMenuService;
 
+    @Resource
+    private UserService userService;
+
     /**
      * 通过主键查询单条数据
      *
@@ -33,8 +41,13 @@ public class PlatformMenuController {
     }
 
     @GetMapping("/getMenu")
-    public ResponseBean getMenu(){
-        return new ResponseBean(10000,"查询成功",platformMenuService.getAllMenu());
+    public ResponseBean getMenu(HttpServletRequest request) {
+        User user = userService.getUserById(Integer.parseInt(JwtTokenUtils.getTokenInfo(request.getHeader("Authorization")).getUid()));
+        if (user.getUsername().equals("admin")){
+            return new ResponseBean(10000,"查询成功",platformMenuService.getAllMenuAdmin());
+        }else {
+            return new ResponseBean(10000,"查询成功",platformMenuService.getAllMenu());
+        }
     }
 
 

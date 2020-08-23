@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="app.dao.pro.ProClassMemberRegistrationDao">
+
+    <resultMap type="app.entity.ClassMemberRegistration" id="ClassMemberRegistrationMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="registrationId" column="registration_id" jdbcType="VARCHAR"/>
+        <result property="riseId" column="rise_id" jdbcType="VARCHAR"/>
+        <result property="passportId" column="passport_id" jdbcType="INTEGER"/>
+        <result property="orderId" column="order_id" jdbcType="VARCHAR"/>
+        <result property="goodsCode" column="goods_code" jdbcType="VARCHAR"/>
+        <result property="registrationStage" column="registration_stage" jdbcType="INTEGER"/>
+        <result property="registrationState" column="registration_state" jdbcType="INTEGER"/>
+        <result property="lessonPackageId" column="lesson_package_id" jdbcType="INTEGER"/>
+        <result property="lessonPackageCode" column="lesson_package_code" jdbcType="VARCHAR"/>
+        <result property="termScheduleId" column="term_schedule_id" jdbcType="INTEGER"/>
+        <result property="termScheduleCode" column="term_schedule_code" jdbcType="VARCHAR"/>
+        <result property="activeTime" column="active_time" jdbcType="TIMESTAMP"/>
+        <result property="expireTime" column="expire_time" jdbcType="TIMESTAMP"/>
+        <result property="approach" column="approach" jdbcType="INTEGER"/>
+        <result property="enterSourceTermId" column="enter_source_term_id" jdbcType="INTEGER"/>
+        <result property="extensionCode" column="extension_code" jdbcType="VARCHAR"/>
+        <result property="channelTypeId" column="channel_type_id" jdbcType="INTEGER"/>
+        <result property="channelGroupId" column="channel_group_id" jdbcType="INTEGER"/>
+        <result property="channelId" column="channel_id" jdbcType="INTEGER"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="createdBy" column="created_by" jdbcType="VARCHAR"/>
+        <result property="modifiedBy" column="modified_by" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ClassMemberRegistrationMap">
+        select
+          id, registration_id, rise_id, passport_id, order_id, goods_code, registration_stage, registration_state, lesson_package_id, lesson_package_code, term_schedule_id, term_schedule_code, active_time, expire_time, approach, enter_source_term_id, extension_code, channel_type_id, channel_group_id, channel_id, status, create_time, update_time, created_by, modified_by
+        from iquanwai.class_member_registration
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ClassMemberRegistrationMap">
+        select
+          id, registration_id, rise_id, passport_id, order_id, goods_code, registration_stage, registration_state, lesson_package_id, lesson_package_code, term_schedule_id, term_schedule_code, active_time, expire_time, approach, enter_source_term_id, extension_code, channel_type_id, channel_group_id, channel_id, status, create_time, update_time, created_by, modified_by
+        from iquanwai.class_member_registration
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="ClassMemberRegistrationMap">
+        select
+          id, registration_id, rise_id, passport_id, order_id, goods_code, registration_stage, registration_state, lesson_package_id, lesson_package_code, term_schedule_id, term_schedule_code, active_time, expire_time, approach, enter_source_term_id, extension_code, channel_type_id, channel_group_id, channel_id, status, create_time, update_time, created_by, modified_by
+        from iquanwai.class_member_registration
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="registrationId != null and registrationId != ''">
+                and registration_id = #{registrationId}
+            </if>
+            <if test="riseId != null and riseId != ''">
+                and rise_id = #{riseId}
+            </if>
+            <if test="passportId != null">
+                and passport_id = #{passportId}
+            </if>
+            <if test="orderId != null and orderId != ''">
+                and order_id = #{orderId}
+            </if>
+            <if test="goodsCode != null and goodsCode != ''">
+                and goods_code = #{goodsCode}
+            </if>
+            <if test="registrationStage != null">
+                and registration_stage = #{registrationStage}
+            </if>
+            <if test="registrationState != null">
+                and registration_state = #{registrationState}
+            </if>
+            <if test="lessonPackageId != null">
+                and lesson_package_id = #{lessonPackageId}
+            </if>
+            <if test="lessonPackageCode != null and lessonPackageCode != ''">
+                and lesson_package_code = #{lessonPackageCode}
+            </if>
+            <if test="termScheduleId != null">
+                and term_schedule_id = #{termScheduleId}
+            </if>
+            <if test="termScheduleCode != null and termScheduleCode != ''">
+                and term_schedule_code = #{termScheduleCode}
+            </if>
+            <if test="activeTime != null">
+                and active_time = #{activeTime}
+            </if>
+            <if test="expireTime != null">
+                and expire_time = #{expireTime}
+            </if>
+            <if test="approach != null">
+                and approach = #{approach}
+            </if>
+            <if test="enterSourceTermId != null">
+                and enter_source_term_id = #{enterSourceTermId}
+            </if>
+            <if test="extensionCode != null and extensionCode != ''">
+                and extension_code = #{extensionCode}
+            </if>
+            <if test="channelTypeId != null">
+                and channel_type_id = #{channelTypeId}
+            </if>
+            <if test="channelGroupId != null">
+                and channel_group_id = #{channelGroupId}
+            </if>
+            <if test="channelId != null">
+                and channel_id = #{channelId}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="createdBy != null and createdBy != ''">
+                and created_by = #{createdBy}
+            </if>
+            <if test="modifiedBy != null and modifiedBy != ''">
+                and modified_by = #{modifiedBy}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into iquanwai.class_member_registration(registration_id, rise_id, passport_id, order_id, goods_code, registration_stage, registration_state, lesson_package_id, lesson_package_code, term_schedule_id, term_schedule_code, active_time, expire_time, approach, enter_source_term_id, extension_code, channel_type_id, channel_group_id, channel_id, status,  created_by, modified_by)
+        values (#{registrationId}, #{riseId}, #{passportId}, #{orderId}, #{goodsCode}, #{registrationStage}, #{registrationState}, #{lessonPackageId}, #{lessonPackageCode}, #{termScheduleId}, #{termScheduleCode}, #{activeTime}, #{expireTime}, #{approach}, #{enterSourceTermId}, #{extensionCode}, #{channelTypeId}, #{channelGroupId}, #{channelId}, #{status}, #{createdBy}, #{modifiedBy})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update iquanwai.class_member_registration
+        <set>
+            <if test="registrationId != null and registrationId != ''">
+                registration_id = #{registrationId},
+            </if>
+            <if test="riseId != null and riseId != ''">
+                rise_id = #{riseId},
+            </if>
+            <if test="passportId != null">
+                passport_id = #{passportId},
+            </if>
+            <if test="orderId != null and orderId != ''">
+                order_id = #{orderId},
+            </if>
+            <if test="goodsCode != null and goodsCode != ''">
+                goods_code = #{goodsCode},
+            </if>
+            <if test="registrationStage != null">
+                registration_stage = #{registrationStage},
+            </if>
+            <if test="registrationState != null">
+                registration_state = #{registrationState},
+            </if>
+            <if test="lessonPackageId != null">
+                lesson_package_id = #{lessonPackageId},
+            </if>
+            <if test="lessonPackageCode != null and lessonPackageCode != ''">
+                lesson_package_code = #{lessonPackageCode},
+            </if>
+            <if test="termScheduleId != null">
+                term_schedule_id = #{termScheduleId},
+            </if>
+            <if test="termScheduleCode != null and termScheduleCode != ''">
+                term_schedule_code = #{termScheduleCode},
+            </if>
+            <if test="activeTime != null">
+                active_time = #{activeTime},
+            </if>
+            <if test="expireTime != null">
+                expire_time = #{expireTime},
+            </if>
+            <if test="approach != null">
+                approach = #{approach},
+            </if>
+            <if test="enterSourceTermId != null">
+                enter_source_term_id = #{enterSourceTermId},
+            </if>
+            <if test="extensionCode != null and extensionCode != ''">
+                extension_code = #{extensionCode},
+            </if>
+            <if test="channelTypeId != null">
+                channel_type_id = #{channelTypeId},
+            </if>
+            <if test="channelGroupId != null">
+                channel_group_id = #{channelGroupId},
+            </if>
+            <if test="channelId != null">
+                channel_id = #{channelId},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="createdBy != null and createdBy != ''">
+                created_by = #{createdBy},
+            </if>
+            <if test="modifiedBy != null and modifiedBy != ''">
+                modified_by = #{modifiedBy},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from iquanwai.class_member_registration where id = #{id}
+    </delete>
+
+    <!--  初始化学籍状态  -->
+    <update id="resetLessonInfo">
+            update iquanwai.user_lesson_learning_record set progress = 0,section_progress = 0
+        where passport_id=#{passportId} and term_schedule_code=#{termScheduleCode}  and lesson_code=#{lessonCode} ;
+    </update>
+
+
+    <!--  删除课程完成状态  -->
+    <delete id="deleteLessonCompletion">
+delete from  iquanwai.user_lesson_completion
+where passport_id=#{passportId} and term_schedule_code=#{termScheduleCode}  and lesson_code=#{lessonCode};
+</delete>
+    <!--  删除内容学习记录  -->
+    <delete id="deleteLessonContentLearningRecord">
+        delete from iquanwai.user_lesson_content_learning_record
+where passport_id=#{passportId} and term_schedule_code=#{termScheduleCode}  and lesson_code=#{lessonCode};
+    </delete>
+    <!--  删除课前思考记录表  -->
+    <delete id="deleteLessonThoughtLearningRecord">
+        delete from iquanwai.user_lesson_thought_learning_record
+where passport_id=#{passportId} and term_schedule_code=#{termScheduleCode}  and lesson_code=#{lessonCode};
+    </delete>
+
+    <!-- 删除内容完成状态 -->
+    <delete id="deleteLessonContentCompletion">
+        delete  from iquanwai.user_lesson_content_completion
+where passport_id=#{passportId} and term_schedule_code=#{termScheduleCode}  and lesson_code=#{lessonCode};
+    </delete>
+
+    <!-- 删除客观题答题记录 -->
+    <delete id="deleteChoiceQuestionLearningRecord">
+delete  from iquanwai.user_choice_question_learning_record
+where passport_id=#{passportId} and term_schedule_code=#{termScheduleCode}  and lesson_code=#{lessonCode};
+    </delete>
+
+    <!-- 删除主观题答题记录 -->
+    <delete id="deleteEssayQuestionLearningRecord">
+delete from iquanwai.user_essay_question_learning_record
+where passport_id=#{passportId} and term_schedule_code=#{termScheduleCode}  and lesson_code=#{lessonCode};
+    </delete>
+    <!-- 删除用户章节学习记录 -->
+    <delete id="deleteLessonChapterSectionLearningRecord">
+delete  from iquanwai.user_lesson_chapter_section_learning_record
+where passport_id=#{passportId} and term_schedule_code=#{termScheduleCode}  and lesson_code=#{lessonCode};
+    </delete>
+
+    <!--  根据passportId查询学籍  -->
+    <select id="getRegistrationByPassportId" resultMap="ClassMemberRegistrationMap">
+        select * from iquanwai.class_member_registration where passport_id = #{passportId} and status=0 and registration_state =0;
+    </select>
+
+</mapper>

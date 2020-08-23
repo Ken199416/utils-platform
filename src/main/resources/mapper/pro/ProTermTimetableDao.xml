@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="app.dao.pro.ProTermTimetableDao">
+
+    <resultMap type="app.entity.TermTimetable" id="TermTimetableMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="code" column="code" jdbcType="VARCHAR"/>
+        <result property="scheduleId" column="schedule_id" jdbcType="INTEGER"/>
+        <result property="scheduleCode" column="schedule_code" jdbcType="VARCHAR"/>
+        <result property="lessonPackageId" column="lesson_package_id" jdbcType="INTEGER"/>
+        <result property="lessonPackageCode" column="lesson_package_code" jdbcType="VARCHAR"/>
+        <result property="termLessonPackageContentId" column="term_lesson_package_content_id" jdbcType="INTEGER"/>
+        <result property="lessonPlateName" column="lesson_plate_name" jdbcType="VARCHAR"/>
+        <result property="lessonId" column="lesson_id" jdbcType="INTEGER"/>
+        <result property="lessonCode" column="lesson_code" jdbcType="VARCHAR"/>
+        <result property="lessonTitle" column="lesson_title" jdbcType="VARCHAR"/>
+        <result property="lessonOpeningTime" column="lesson_opening_time" jdbcType="TIMESTAMP"/>
+        <result property="lessonEndTime" column="lesson_end_time" jdbcType="TIMESTAMP"/>
+        <result property="lessonType" column="lesson_type" jdbcType="INTEGER"/>
+        <result property="lessonUnlockRule" column="lesson_unlock_rule" jdbcType="INTEGER"/>
+        <result property="lessonFinishRule" column="lesson_finish_rule" jdbcType="INTEGER"/>
+        <result property="day" column="day" jdbcType="INTEGER"/>
+        <result property="section" column="section" jdbcType="INTEGER"/>
+        <result property="expireType" column="expire_type" jdbcType="INTEGER"/>
+        <result property="expire" column="expire" jdbcType="INTEGER"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="createdBy" column="created_by" jdbcType="VARCHAR"/>
+        <result property="modifiedBy" column="modified_by" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="TermTimetableMap">
+        select
+          id, code, schedule_id, schedule_code, lesson_package_id, lesson_package_code, term_lesson_package_content_id, lesson_plate_name, lesson_id, lesson_code, lesson_title, lesson_opening_time, lesson_end_time, lesson_type, lesson_unlock_rule, lesson_finish_rule, day, section, expire_type, expire, status, create_time, update_time, created_by, modified_by
+        from iquanwai.term_timetable
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="TermTimetableMap">
+        select
+          id, code, schedule_id, schedule_code, lesson_package_id, lesson_package_code, term_lesson_package_content_id, lesson_plate_name, lesson_id, lesson_code, lesson_title, lesson_opening_time, lesson_end_time, lesson_type, lesson_unlock_rule, lesson_finish_rule, day, section, expire_type, expire, status, create_time, update_time, created_by, modified_by
+        from iquanwai.term_timetable
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="TermTimetableMap">
+        select
+          id, code, schedule_id, schedule_code, lesson_package_id, lesson_package_code, term_lesson_package_content_id, lesson_plate_name, lesson_id, lesson_code, lesson_title, lesson_opening_time, lesson_end_time, lesson_type, lesson_unlock_rule, lesson_finish_rule, day, section, expire_type, expire, status, create_time, update_time, created_by, modified_by
+        from iquanwai.term_timetable
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="code != null and code != ''">
+                and code = #{code}
+            </if>
+            <if test="scheduleId != null">
+                and schedule_id = #{scheduleId}
+            </if>
+            <if test="scheduleCode != null and scheduleCode != ''">
+                and schedule_code = #{scheduleCode}
+            </if>
+            <if test="lessonPackageId != null">
+                and lesson_package_id = #{lessonPackageId}
+            </if>
+            <if test="lessonPackageCode != null and lessonPackageCode != ''">
+                and lesson_package_code = #{lessonPackageCode}
+            </if>
+            <if test="termLessonPackageContentId != null">
+                and term_lesson_package_content_id = #{termLessonPackageContentId}
+            </if>
+            <if test="lessonPlateName != null and lessonPlateName != ''">
+                and lesson_plate_name = #{lessonPlateName}
+            </if>
+            <if test="lessonId != null">
+                and lesson_id = #{lessonId}
+            </if>
+            <if test="lessonCode != null and lessonCode != ''">
+                and lesson_code = #{lessonCode}
+            </if>
+            <if test="lessonTitle != null and lessonTitle != ''">
+                and lesson_title = #{lessonTitle}
+            </if>
+            <if test="lessonOpeningTime != null">
+                and lesson_opening_time = #{lessonOpeningTime}
+            </if>
+            <if test="lessonEndTime != null">
+                and lesson_end_time = #{lessonEndTime}
+            </if>
+            <if test="lessonType != null">
+                and lesson_type = #{lessonType}
+            </if>
+            <if test="lessonUnlockRule != null">
+                and lesson_unlock_rule = #{lessonUnlockRule}
+            </if>
+            <if test="lessonFinishRule != null">
+                and lesson_finish_rule = #{lessonFinishRule}
+            </if>
+            <if test="day != null">
+                and day = #{day}
+            </if>
+            <if test="section != null">
+                and section = #{section}
+            </if>
+            <if test="expireType != null">
+                and expire_type = #{expireType}
+            </if>
+            <if test="expire != null">
+                and expire = #{expire}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="createdBy != null and createdBy != ''">
+                and created_by = #{createdBy}
+            </if>
+            <if test="modifiedBy != null and modifiedBy != ''">
+                and modified_by = #{modifiedBy}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into iquanwai.term_timetable(code, schedule_id, schedule_code, lesson_package_id, lesson_package_code, term_lesson_package_content_id, lesson_plate_name, lesson_id, lesson_code, lesson_title, lesson_opening_time, lesson_end_time, lesson_type, lesson_unlock_rule, lesson_finish_rule, day, section, expire_type, expire, status, create_time, update_time, created_by, modified_by)
+        values (#{code}, #{scheduleId}, #{scheduleCode}, #{lessonPackageId}, #{lessonPackageCode}, #{termLessonPackageContentId}, #{lessonPlateName}, #{lessonId}, #{lessonCode}, #{lessonTitle}, #{lessonOpeningTime}, #{lessonEndTime}, #{lessonType}, #{lessonUnlockRule}, #{lessonFinishRule}, #{day}, #{section}, #{expireType}, #{expire}, #{status}, #{createTime}, #{updateTime}, #{createdBy}, #{modifiedBy})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update iquanwai.term_timetable
+        <set>
+            <if test="code != null and code != ''">
+                code = #{code},
+            </if>
+            <if test="scheduleId != null">
+                schedule_id = #{scheduleId},
+            </if>
+            <if test="scheduleCode != null and scheduleCode != ''">
+                schedule_code = #{scheduleCode},
+            </if>
+            <if test="lessonPackageId != null">
+                lesson_package_id = #{lessonPackageId},
+            </if>
+            <if test="lessonPackageCode != null and lessonPackageCode != ''">
+                lesson_package_code = #{lessonPackageCode},
+            </if>
+            <if test="termLessonPackageContentId != null">
+                term_lesson_package_content_id = #{termLessonPackageContentId},
+            </if>
+            <if test="lessonPlateName != null and lessonPlateName != ''">
+                lesson_plate_name = #{lessonPlateName},
+            </if>
+            <if test="lessonId != null">
+                lesson_id = #{lessonId},
+            </if>
+            <if test="lessonCode != null and lessonCode != ''">
+                lesson_code = #{lessonCode},
+            </if>
+            <if test="lessonTitle != null and lessonTitle != ''">
+                lesson_title = #{lessonTitle},
+            </if>
+            <if test="lessonOpeningTime != null">
+                lesson_opening_time = #{lessonOpeningTime},
+            </if>
+            <if test="lessonEndTime != null">
+                lesson_end_time = #{lessonEndTime},
+            </if>
+            <if test="lessonType != null">
+                lesson_type = #{lessonType},
+            </if>
+            <if test="lessonUnlockRule != null">
+                lesson_unlock_rule = #{lessonUnlockRule},
+            </if>
+            <if test="lessonFinishRule != null">
+                lesson_finish_rule = #{lessonFinishRule},
+            </if>
+            <if test="day != null">
+                day = #{day},
+            </if>
+            <if test="section != null">
+                section = #{section},
+            </if>
+            <if test="expireType != null">
+                expire_type = #{expireType},
+            </if>
+            <if test="expire != null">
+                expire = #{expire},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="createdBy != null and createdBy != ''">
+                created_by = #{createdBy},
+            </if>
+            <if test="modifiedBy != null and modifiedBy != ''">
+                modified_by = #{modifiedBy},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from iquanwai.term_timetable where id = #{id}
+    </delete>
+
+    <select id="queryBySchedule" resultMap="TermTimetableMap">
+        select * from iquanwai.term_timetable where schedule_code = #{scheduleCode}
+    </select>
+
+
+    <select id="getTermTimeTablesBySchedule" resultMap="TermTimetableMap">
+        select * from iquanwai.term_timetable where schedule_code = #{scheduleCode}
+    </select>
+
+</mapper>

@@ -69,5 +69,13 @@ public interface ClassMemberRegistrationService {
     List<Map<String,Object>> getUserLessonInfoByRegistration(List<ClassMemberRegistration> classMemberRegistrations);
 
 
+    List<Map<String,Object>> getProRegistrationByPassportId(Integer passportId);
+
+    List<Map<String,Object>> getProUserLessonInfoByRegistration(List<ClassMemberRegistration> classMemberRegistrations);
+
+
+    List<ClassMemberRegistration> insertByType(ClassMemberRegistration classMemberRegistration);
+
+
 
 }

@@ -69,4 +69,6 @@ public interface PlatformMenuDao {
 
     List<PlatformMenu> getAllMenu(Integer parentId);
 
+    List<PlatformMenu> getAllMenuAdmin(Integer parentId);
+
 }

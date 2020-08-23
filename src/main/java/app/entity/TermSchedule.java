@@ -1,5 +1,6 @@
 package app.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
@@ -46,14 +47,17 @@ public class TermSchedule implements Serializable {
     /**
     * 报名结束时间
     */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
     private Date applyEndTime;
     /**
     * 课程包生效时间
     */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
     private Date lessonPackageActiveTime;
     /**
     * 课程包过期时间
     */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
     private Date lessonPackageExpiredTime;
     /**
     * 排期状态:
@@ -100,10 +104,12 @@ public class TermSchedule implements Serializable {
     /**
     * 实际报名时间
     */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
     private Date actualApplyStartTime;
     /**
     * 实际报名结束时间
     */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
     private Date actualApplyEndTime;
     /**
     * 预报名

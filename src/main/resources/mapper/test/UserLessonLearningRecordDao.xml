@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="app.dao.test.UserLessonLearningRecordDao">
+
+    <resultMap type="app.entity.UserLessonLearningRecord" id="UserLessonLearningRecordMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="passportId" column="passport_id" jdbcType="INTEGER"/>
+        <result property="riseId" column="rise_id" jdbcType="VARCHAR"/>
+        <result property="registrationId" column="registration_id" jdbcType="VARCHAR"/>
+        <result property="termTimetableId" column="term_timetable_id" jdbcType="INTEGER"/>
+        <result property="termScheduleId" column="term_schedule_id" jdbcType="INTEGER"/>
+        <result property="termScheduleCode" column="term_schedule_code" jdbcType="VARCHAR"/>
+        <result property="lessonPackageId" column="lesson_package_id" jdbcType="INTEGER"/>
+        <result property="lessonPackageCode" column="lesson_package_code" jdbcType="VARCHAR"/>
+        <result property="lessonId" column="lesson_id" jdbcType="INTEGER"/>
+        <result property="lessonCode" column="lesson_code" jdbcType="VARCHAR"/>
+        <result property="lessonType" column="lesson_type" jdbcType="INTEGER"/>
+        <result property="title" column="title" jdbcType="VARCHAR"/>
+        <result property="sectionProgress" column="section_progress" jdbcType="INTEGER"/>
+        <result property="sectionTotal" column="section_total" jdbcType="INTEGER"/>
+        <result property="progress" column="progress" jdbcType="INTEGER"/>
+        <result property="unlockFlag" column="unlock_flag" jdbcType="INTEGER"/>
+        <result property="bulletBox" column="bullet_box" jdbcType="INTEGER"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="=step" column="step" javaType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="UserLessonLearningRecordMap">
+        select *
+        from iquanwai.user_lesson_learning_record
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="UserLessonLearningRecordMap">
+        select *
+        from iquanwai.user_lesson_learning_record
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="UserLessonLearningRecordMap">
+        select *
+        from iquanwai.user_lesson_learning_record
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="passportId != null">
+                and passport_id = #{passportId}
+            </if>
+            <if test="riseId != null and riseId != ''">
+                and rise_id = #{riseId}
+            </if>
+            <if test="registrationId != null and registrationId != ''">
+                and registration_id = #{registrationId}
+            </if>
+            <if test="termTimetableId != null">
+                and term_timetable_id = #{termTimetableId}
+            </if>
+            <if test="termScheduleId != null">
+                and term_schedule_id = #{termScheduleId}
+            </if>
+            <if test="termScheduleCode != null and termScheduleCode != ''">
+                and term_schedule_code = #{termScheduleCode}
+            </if>
+            <if test="lessonPackageId != null">
+                and lesson_package_id = #{lessonPackageId}
+            </if>
+            <if test="lessonPackageCode != null and lessonPackageCode != ''">
+                and lesson_package_code = #{lessonPackageCode}
+            </if>
+            <if test="lessonId != null">
+                and lesson_id = #{lessonId}
+            </if>
+            <if test="lessonCode != null and lessonCode != ''">
+                and lesson_code = #{lessonCode}
+            </if>
+            <if test="lessonType != null">
+                and lesson_type = #{lessonType}
+            </if>
+            <if test="title != null and title != ''">
+                and title = #{title}
+            </if>
+            <if test="sectionProgress != null">
+                and section_progress = #{sectionProgress}
+            </if>
+            <if test="sectionTotal != null">
+                and section_total = #{sectionTotal}
+            </if>
+            <if test="progress != null">
+                and progress = #{progress}
+            </if>
+            <if test="unlockFlag != null">
+                and unlock_flag = #{unlockFlag}
+            </if>
+            <if test="bulletBox != null">
+                and bullet_box = #{bulletBox}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into iquanwai.user_lesson_learning_record(passport_id, rise_id, registration_id, term_timetable_id, term_schedule_id, term_schedule_code, lesson_package_id, lesson_package_code, lesson_id, lesson_code, lesson_type, title, section_progress, section_total, progress, unlock_flag, bullet_box, status, create_time, update_time)
+        values (#{passportId}, #{riseId}, #{registrationId}, #{termTimetableId}, #{termScheduleId}, #{termScheduleCode}, #{lessonPackageId}, #{lessonPackageCode}, #{lessonId}, #{lessonCode}, #{lessonType}, #{title}, #{sectionProgress}, #{sectionTotal}, #{progress}, #{unlockFlag}, #{bulletBox}, #{status}, #{createTime}, #{updateTime})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update iquanwai.user_lesson_learning_record
+        <set>
+            <if test="passportId != null">
+                passport_id = #{passportId},
+            </if>
+            <if test="riseId != null and riseId != ''">
+                rise_id = #{riseId},
+            </if>
+            <if test="registrationId != null and registrationId != ''">
+                registration_id = #{registrationId},
+            </if>
+            <if test="termTimetableId != null">
+                term_timetable_id = #{termTimetableId},
+            </if>
+            <if test="termScheduleId != null">
+                term_schedule_id = #{termScheduleId},
+            </if>
+            <if test="termScheduleCode != null and termScheduleCode != ''">
+                term_schedule_code = #{termScheduleCode},
+            </if>
+            <if test="lessonPackageId != null">
+                lesson_package_id = #{lessonPackageId},
+            </if>
+            <if test="lessonPackageCode != null and lessonPackageCode != ''">
+                lesson_package_code = #{lessonPackageCode},
+            </if>
+            <if test="lessonId != null">
+                lesson_id = #{lessonId},
+            </if>
+            <if test="lessonCode != null and lessonCode != ''">
+                lesson_code = #{lessonCode},
+            </if>
+            <if test="lessonType != null">
+                lesson_type = #{lessonType},
+            </if>
+            <if test="title != null and title != ''">
+                title = #{title},
+            </if>
+            <if test="sectionProgress != null">
+                section_progress = #{sectionProgress},
+            </if>
+            <if test="sectionTotal != null">
+                section_total = #{sectionTotal},
+            </if>
+            <if test="progress != null">
+                progress = #{progress},
+            </if>
+            <if test="unlockFlag != null">
+                unlock_flag = #{unlockFlag},
+            </if>
+            <if test="bulletBox != null">
+                bullet_box = #{bulletBox},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from iquanwai.user_lesson_learning_record where id = #{id}
+    </delete>
+
+    <select id="getUserLessonLearningRecord" resultMap="UserLessonLearningRecordMap">
+        select * from iquanwai.user_lesson_learning_record where
+            passport_id=#{passportId}
+         and lesson_code= #{lessonCode}
+         and term_schedule_code= #{termScheduleCode};
+    </select>
+
+    <select id="getLessonSectionTotal" resultType="Integer">
+        select count(*)from iquanwai.lesson_directory where lesson_id= #{lessonId} and type=1 and status = 0;
+    </select>
+
+</mapper>

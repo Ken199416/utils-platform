@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="app.dao.pro.ProQwOrderDao">
+
+    <resultMap type="app.entity.QwOrder" id="QwOrderMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="orderId" column="order_id" jdbcType="VARCHAR"/>
+        <result property="riseId" column="rise_id" jdbcType="VARCHAR"/>
+        <result property="passportId" column="passport_id" jdbcType="INTEGER"/>
+        <result property="platformType" column="platform_type" jdbcType="INTEGER"/>
+        <result property="orderStatus" column="order_status" jdbcType="INTEGER"/>
+        <result property="couponDiscount" column="coupon_discount" jdbcType="INTEGER"/>
+        <result property="activityDiscount" column="activity_discount" jdbcType="INTEGER"/>
+        <result property="goodsPrice" column="goods_price" jdbcType="INTEGER"/>
+        <result property="exchangePrice" column="exchange_price" jdbcType="INTEGER"/>
+        <result property="realPrice" column="real_price" jdbcType="INTEGER"/>
+        <result property="refundProcess" column="refund_process" jdbcType="INTEGER"/>
+        <result property="refundPrice" column="refund_price" jdbcType="INTEGER"/>
+        <result property="extensionCode" column="extension_code" jdbcType="VARCHAR"/>
+        <result property="channelCode" column="channel_code" jdbcType="VARCHAR"/>
+        <result property="channelType" column="channel_type" jdbcType="VARCHAR"/>
+        <result property="channelTypeId" column="channel_type_id" jdbcType="INTEGER"/>
+        <result property="channelGroup" column="channel_group" jdbcType="VARCHAR"/>
+        <result property="channelGroupId" column="channel_group_id" jdbcType="INTEGER"/>
+        <result property="paymentOrderId" column="payment_order_id" jdbcType="VARCHAR"/>
+        <result property="transactionId" column="transaction_id" jdbcType="VARCHAR"/>
+        <result property="paymentType" column="payment_type" jdbcType="INTEGER"/>
+        <result property="paymentSubType" column="payment_sub_type" jdbcType="INTEGER"/>
+        <result property="paidTime" column="paid_time" jdbcType="TIMESTAMP"/>
+        <result property="paymentStatus" column="payment_status" jdbcType="INTEGER"/>
+        <result property="callbackStatus" column="callback_status" jdbcType="INTEGER"/>
+        <result property="callbackPrice" column="callback_price" jdbcType="INTEGER"/>
+        <result property="status" column="status" jdbcType="OTHER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="createdBy" column="created_by" jdbcType="VARCHAR"/>
+        <result property="modifiedBy" column="modified_by" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="QwOrderMap">
+        select
+          id, order_id, rise_id, passport_id, platform_type, order_status, coupon_discount, activity_discount, goods_price, exchange_price, real_price, refund_process, refund_price, extension_code, channel_code, channel_type, channel_type_id, channel_group, channel_group_id, payment_order_id, transaction_id, payment_type, payment_sub_type, paid_time, payment_status, callback_status, callback_price, status, create_time, update_time, created_by, modified_by
+        from iquanwai.qw_order
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="QwOrderMap">
+        select
+          id, order_id, rise_id, passport_id, platform_type, order_status, coupon_discount, activity_discount, goods_price, exchange_price, real_price, refund_process, refund_price, extension_code, channel_code, channel_type, channel_type_id, channel_group, channel_group_id, payment_order_id, transaction_id, payment_type, payment_sub_type, paid_time, payment_status, callback_status, callback_price, status, create_time, update_time, created_by, modified_by
+        from iquanwai.qw_order
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="QwOrderMap">
+        select
+          id, order_id, rise_id, passport_id, platform_type, order_status, coupon_discount, activity_discount, goods_price, exchange_price, real_price, refund_process, refund_price, extension_code, channel_code, channel_type, channel_type_id, channel_group, channel_group_id, payment_order_id, transaction_id, payment_type, payment_sub_type, paid_time, payment_status, callback_status, callback_price, status, create_time, update_time, created_by, modified_by
+        from iquanwai.qw_order
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="orderId != null and orderId != ''">
+                and order_id = #{orderId}
+            </if>
+            <if test="riseId != null and riseId != ''">
+                and rise_id = #{riseId}
+            </if>
+            <if test="passportId != null">
+                and passport_id = #{passportId}
+            </if>
+            <if test="platformType != null">
+                and platform_type = #{platformType}
+            </if>
+            <if test="orderStatus != null">
+                and order_status = #{orderStatus}
+            </if>
+            <if test="couponDiscount != null">
+                and coupon_discount = #{couponDiscount}
+            </if>
+            <if test="activityDiscount != null">
+                and activity_discount = #{activityDiscount}
+            </if>
+            <if test="goodsPrice != null">
+                and goods_price = #{goodsPrice}
+            </if>
+            <if test="exchangePrice != null">
+                and exchange_price = #{exchangePrice}
+            </if>
+            <if test="realPrice != null">
+                and real_price = #{realPrice}
+            </if>
+            <if test="refundProcess != null">
+                and refund_process = #{refundProcess}
+            </if>
+            <if test="refundPrice != null">
+                and refund_price = #{refundPrice}
+            </if>
+            <if test="extensionCode != null and extensionCode != ''">
+                and extension_code = #{extensionCode}
+            </if>
+            <if test="channelCode != null and channelCode != ''">
+                and channel_code = #{channelCode}
+            </if>
+            <if test="channelType != null and channelType != ''">
+                and channel_type = #{channelType}
+            </if>
+            <if test="channelTypeId != null">
+                and channel_type_id = #{channelTypeId}
+            </if>
+            <if test="channelGroup != null and channelGroup != ''">
+                and channel_group = #{channelGroup}
+            </if>
+            <if test="channelGroupId != null">
+                and channel_group_id = #{channelGroupId}
+            </if>
+            <if test="paymentOrderId != null and paymentOrderId != ''">
+                and payment_order_id = #{paymentOrderId}
+            </if>
+            <if test="transactionId != null and transactionId != ''">
+                and transaction_id = #{transactionId}
+            </if>
+            <if test="paymentType != null">
+                and payment_type = #{paymentType}
+            </if>
+            <if test="paymentSubType != null">
+                and payment_sub_type = #{paymentSubType}
+            </if>
+            <if test="paidTime != null">
+                and paid_time = #{paidTime}
+            </if>
+            <if test="paymentStatus != null">
+                and payment_status = #{paymentStatus}
+            </if>
+            <if test="callbackStatus != null">
+                and callback_status = #{callbackStatus}
+            </if>
+            <if test="callbackPrice != null">
+                and callback_price = #{callbackPrice}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="createdBy != null and createdBy != ''">
+                and created_by = #{createdBy}
+            </if>
+            <if test="modifiedBy != null and modifiedBy != ''">
+                and modified_by = #{modifiedBy}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into iquanwai.qw_order(order_id, rise_id, passport_id, platform_type, order_status, coupon_discount, activity_discount, goods_price, exchange_price, real_price, refund_process, refund_price, extension_code, channel_code, channel_type, channel_type_id, channel_group, channel_group_id, payment_order_id, transaction_id, payment_type, payment_sub_type, paid_time, payment_status, callback_status, callback_price, status, create_time, update_time, created_by, modified_by)
+        values (#{orderId}, #{riseId}, #{passportId}, #{platformType}, #{orderStatus}, #{couponDiscount}, #{activityDiscount}, #{goodsPrice}, #{exchangePrice}, #{realPrice}, #{refundProcess}, #{refundPrice}, #{extensionCode}, #{channelCode}, #{channelType}, #{channelTypeId}, #{channelGroup}, #{channelGroupId}, #{paymentOrderId}, #{transactionId}, #{paymentType}, #{paymentSubType}, #{paidTime}, #{paymentStatus}, #{callbackStatus}, #{callbackPrice}, #{status}, #{createTime}, #{updateTime}, #{createdBy}, #{modifiedBy})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update iquanwai.qw_order
+        <set>
+            <if test="orderId != null and orderId != ''">
+                order_id = #{orderId},
+            </if>
+            <if test="riseId != null and riseId != ''">
+                rise_id = #{riseId},
+            </if>
+            <if test="passportId != null">
+                passport_id = #{passportId},
+            </if>
+            <if test="platformType != null">
+                platform_type = #{platformType},
+            </if>
+            <if test="orderStatus != null">
+                order_status = #{orderStatus},
+            </if>
+            <if test="couponDiscount != null">
+                coupon_discount = #{couponDiscount},
+            </if>
+            <if test="activityDiscount != null">
+                activity_discount = #{activityDiscount},
+            </if>
+            <if test="goodsPrice != null">
+                goods_price = #{goodsPrice},
+            </if>
+            <if test="exchangePrice != null">
+                exchange_price = #{exchangePrice},
+            </if>
+            <if test="realPrice != null">
+                real_price = #{realPrice},
+            </if>
+            <if test="refundProcess != null">
+                refund_process = #{refundProcess},
+            </if>
+            <if test="refundPrice != null">
+                refund_price = #{refundPrice},
+            </if>
+            <if test="extensionCode != null and extensionCode != ''">
+                extension_code = #{extensionCode},
+            </if>
+            <if test="channelCode != null and channelCode != ''">
+                channel_code = #{channelCode},
+            </if>
+            <if test="channelType != null and channelType != ''">
+                channel_type = #{channelType},
+            </if>
+            <if test="channelTypeId != null">
+                channel_type_id = #{channelTypeId},
+            </if>
+            <if test="channelGroup != null and channelGroup != ''">
+                channel_group = #{channelGroup},
+            </if>
+            <if test="channelGroupId != null">
+                channel_group_id = #{channelGroupId},
+            </if>
+            <if test="paymentOrderId != null and paymentOrderId != ''">
+                payment_order_id = #{paymentOrderId},
+            </if>
+            <if test="transactionId != null and transactionId != ''">
+                transaction_id = #{transactionId},
+            </if>
+            <if test="paymentType != null">
+                payment_type = #{paymentType},
+            </if>
+            <if test="paymentSubType != null">
+                payment_sub_type = #{paymentSubType},
+            </if>
+            <if test="paidTime != null">
+                paid_time = #{paidTime},
+            </if>
+            <if test="paymentStatus != null">
+                payment_status = #{paymentStatus},
+            </if>
+            <if test="callbackStatus != null">
+                callback_status = #{callbackStatus},
+            </if>
+            <if test="callbackPrice != null">
+                callback_price = #{callbackPrice},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="createdBy != null and createdBy != ''">
+                created_by = #{createdBy},
+            </if>
+            <if test="modifiedBy != null and modifiedBy != ''">
+                modified_by = #{modifiedBy},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from iquanwai.qw_order where id = #{id}
+    </delete>
+
+
+    <select id="queryByOrderId" resultMap="QwOrderMap">
+        select
+        *
+        from iquanwai.qw_order
+        where order_id = #{orderId}
+    </select>
+
+</mapper>

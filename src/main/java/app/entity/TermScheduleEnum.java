@@ -14,4 +14,15 @@ public enum TermScheduleEnum {
         this.termScheduleStatusDesc = termScheduleStatusDesc;
     }
 
+    public static String getTermScheduleStatusDesc(int termScheduleStatus){
+//        获取全部的枚举
+        TermScheduleEnum [] termScheduleEnums = values();
+        for (TermScheduleEnum termScheduleEnum : termScheduleEnums) {
+            if (termScheduleEnum.termScheduleStatus == termScheduleStatus){
+                return termScheduleEnum.termScheduleStatusDesc;
+            }
+        }
+        return "未知状态";
+    }
+
 }

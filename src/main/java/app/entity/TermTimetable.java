@@ -1,5 +1,7 @@
 package app.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.util.Date;
@@ -61,10 +63,18 @@ public class TermTimetable implements Serializable {
     /**
     * 开课时间
     */
+    /**
+     * 开始时间
+     */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
     private Date lessonOpeningTime;
     /**
     * 课程结束时间
     */
+    /**
+     * 开始时间
+     */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
     private Date lessonEndTime;
     /**
     * 课程类型
@@ -116,6 +126,34 @@ public class TermTimetable implements Serializable {
     * 修改人
     */
     private String modifiedBy;
+
+
+    private String finishRule;
+
+    public String getFinishRule(){
+        return LessonFinishRuleEnum.getLessonFinishRuleDesc(this.lessonFinishRule);
+    }
+
+    private String unlockRule;
+
+    public String getUnlockRule(){
+//        顺序解锁
+        if (this.lessonUnlockRule == 1){
+            return "顺序解锁";
+        }else {
+//            指定
+            return "开课后" + this.day + "天解锁" + this.section + "小节";
+        }
+    }
+
+
+    public String getLessonTypeName(){
+        if (this.lessonType == 0){
+            return "主修课";
+        }else {
+            return "辅修课";
+        }
+    }
 
 
 

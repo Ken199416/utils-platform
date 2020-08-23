@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="app.dao.pro.ProUserLessonCompletionDao">
+
+    <resultMap type="app.entity.UserLessonCompletion" id="UserLessonCompletionMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="passportId" column="passport_id" jdbcType="INTEGER"/>
+        <result property="registrationId" column="registration_id" jdbcType="VARCHAR"/>
+        <result property="lessonId" column="lesson_id" jdbcType="INTEGER"/>
+        <result property="lessonCode" column="lesson_code" jdbcType="VARCHAR"/>
+        <result property="lessonType" column="lesson_type" jdbcType="INTEGER"/>
+        <result property="termScheduleId" column="term_schedule_id" jdbcType="INTEGER"/>
+        <result property="termScheduleCode" column="term_schedule_code" jdbcType="VARCHAR"/>
+        <result property="lessonPackageId" column="lesson_package_id" jdbcType="INTEGER"/>
+        <result property="lessonPackageCode" column="lesson_package_code" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="progress" column="progress" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="UserLessonCompletionMap">
+        select
+          id, passport_id, registration_id, lesson_id, lesson_code, lesson_type, term_schedule_id, term_schedule_code, lesson_package_id, lesson_package_code, status, create_time, update_time
+        from iquanwai.user_lesson_completion
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="UserLessonCompletionMap">
+        select
+          id, passport_id, registration_id, lesson_id, lesson_code, lesson_type, term_schedule_id, term_schedule_code, lesson_package_id, lesson_package_code, status, create_time, update_time
+        from iquanwai.user_lesson_completion
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="UserLessonCompletionMap">
+        select
+          id, passport_id, registration_id, lesson_id, lesson_code, lesson_type, term_schedule_id, term_schedule_code, lesson_package_id, lesson_package_code, status, create_time, update_time
+        from iquanwai.user_lesson_completion
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="passportId != null">
+                and passport_id = #{passportId}
+            </if>
+            <if test="registrationId != null and registrationId != ''">
+                and registration_id = #{registrationId}
+            </if>
+            <if test="lessonId != null">
+                and lesson_id = #{lessonId}
+            </if>
+            <if test="lessonCode != null and lessonCode != ''">
+                and lesson_code = #{lessonCode}
+            </if>
+            <if test="lessonType != null">
+                and lesson_type = #{lessonType}
+            </if>
+            <if test="termScheduleId != null">
+                and term_schedule_id = #{termScheduleId}
+            </if>
+            <if test="termScheduleCode != null and termScheduleCode != ''">
+                and term_schedule_code = #{termScheduleCode}
+            </if>
+            <if test="lessonPackageId != null">
+                and lesson_package_id = #{lessonPackageId}
+            </if>
+            <if test="lessonPackageCode != null and lessonPackageCode != ''">
+                and lesson_package_code = #{lessonPackageCode}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into iquanwai.user_lesson_completion(passport_id, registration_id, lesson_id, lesson_code, lesson_type, term_schedule_id, term_schedule_code, lesson_package_id, lesson_package_code, status, create_time, update_time)
+        values (#{passportId}, #{registrationId}, #{lessonId}, #{lessonCode}, #{lessonType}, #{termScheduleId}, #{termScheduleCode}, #{lessonPackageId}, #{lessonPackageCode}, #{status}, #{createTime}, #{updateTime})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update iquanwai.user_lesson_completion
+        <set>
+            <if test="passportId != null">
+                passport_id = #{passportId},
+            </if>
+            <if test="registrationId != null and registrationId != ''">
+                registration_id = #{registrationId},
+            </if>
+            <if test="lessonId != null">
+                lesson_id = #{lessonId},
+            </if>
+            <if test="lessonCode != null and lessonCode != ''">
+                lesson_code = #{lessonCode},
+            </if>
+            <if test="lessonType != null">
+                lesson_type = #{lessonType},
+            </if>
+            <if test="termScheduleId != null">
+                term_schedule_id = #{termScheduleId},
+            </if>
+            <if test="termScheduleCode != null and termScheduleCode != ''">
+                term_schedule_code = #{termScheduleCode},
+            </if>
+            <if test="lessonPackageId != null">
+                lesson_package_id = #{lessonPackageId},
+            </if>
+            <if test="lessonPackageCode != null and lessonPackageCode != ''">
+                lesson_package_code = #{lessonPackageCode},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from iquanwai.user_lesson_completion where id = #{id}
+    </delete>
+
+    <select id="getUserLessonCompletion" resultMap="UserLessonCompletionMap">
+        select * from iquanwai.user_lesson_completion where passport_id = #{passportId}
+         and lesson_code = #{lessonCode}
+         and term_schedule_code = #{termScheduleCode};
+    </select>
+
+</mapper>

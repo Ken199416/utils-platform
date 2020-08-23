@@ -51,6 +51,8 @@ public class PlatformMenu implements Serializable {
 
     private String icon;
 
+    private Boolean isAdmin;
+
 
 
 }

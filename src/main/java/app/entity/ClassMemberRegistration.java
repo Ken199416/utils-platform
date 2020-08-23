@@ -117,7 +117,20 @@ public class ClassMemberRegistration implements Serializable {
     * 修改人
     */
     private String modifiedBy;
+    /**
+     * 学籍状态
+     */
+    private String RegistrationStatusDesc;
 
+    public String getRegistrationStatusDesc(){
+        return RegistrationEnum.getRegistrationStatusDesc(this.getRegistrationState());
+    }
+
+
+
+    private String type;
+
+    private String value;
 
 
 }
